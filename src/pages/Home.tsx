@@ -225,7 +225,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16">
           <div className="flex-1 space-y-8">
             <div>
-              <span className="text-tertiary font-bold tracking-[0.2em] uppercase text-xs mb-3 block">The Nirvana Difference</span>
+              <span className="text-tertiary font-bold tracking-[0.2em] uppercase text-xs mb-3 block">The  Bodhi Holy Tours Difference</span>
               <h2 className="font-headline text-4xl md:text-5xl">{t('ui.whyChooseUs')}</h2>
             </div>
             <div className="space-y-10">

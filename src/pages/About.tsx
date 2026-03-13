@@ -87,7 +87,7 @@ export default function About() {
               <h2 className="font-headline text-4xl mb-6 text-on-surface">{tt('about.story.title', 'Founded by a Local Soul')}</h2>
               <div className="space-y-6 text-secondary leading-relaxed">
                 <p>
-                  {tt('about.story.p1', 'Nirvana Travels was founded by Tenzin, a local guide who spent over ten years walking the sacred paths of Bodh Gaya, Sarnath, and Kushinagar.')}
+                  {tt('about.story.p1', ' Bodhi Holy Tours  was founded by Tenzin, a local guide who spent over ten years walking the sacred paths of Bodh Gaya, Sarnath, and Kushinagar.')}
                 </p>
                 <p>
                   {tt('about.story.p2', 'Having guided thousands of pilgrims from across the globe, Tenzin realized that most international travelers were missing the true "inner" journey—the quiet conversations with monks, the hidden meditation caves, and the authentic pulse of local life.')}

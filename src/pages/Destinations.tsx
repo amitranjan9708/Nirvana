@@ -674,7 +674,7 @@ export default function Destinations() {
           <UtensilsCrossed size={36} className="text-tertiary mx-auto mb-4" />
           <h2 className="font-headline text-3xl md:text-4xl text-on-surface mb-3">Taste Every Region</h2>
           <p className="text-secondary leading-relaxed mb-6 max-w-2xl mx-auto">
-            Your journey with Nirvana is a culinary journey too. Each destination's local cuisine is woven into your itinerary — from Litti Chokha in Bihar to Kerala Sadya on a backwater houseboat to Petha from the shadow of the Taj.
+            Your journey with  Bodhi Holy Tours is a culinary journey too. Each destination's local cuisine is woven into your itinerary — from Litti Chokha in Bihar to Kerala Sadya on a backwater houseboat to Petha from the shadow of the Taj.
           </p>
           <p className="text-xs text-tertiary font-bold tracking-widest uppercase">Expand any destination card above to explore local foods →</p>
         </div>

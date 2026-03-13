@@ -40,7 +40,7 @@ const resources = {
         newsletterTitle: 'Join our Pilgrimage Newsletter',
         newsletterSubtitle: 'Monthly insights on sacred travel, upcoming departures, and Bodh Gaya updates.',
         subscribeViaEmail: 'Subscribe via Email',
-        rights: '© 2026 Nirvana Buddhist Pilgrimages. All rights reserved.',
+        rights: '© 2026 Bodhi Holy Tours Buddhist Pilgrimages. All rights reserved.',
         faq: 'FAQ',
         privacy: 'Privacy Policy',
         terms: 'Terms of Service',
