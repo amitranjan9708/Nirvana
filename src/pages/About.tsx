@@ -8,9 +8,9 @@ export default function About() {
   const thAbout: Record<string, string> = {
     'about.hero.line1': 'ปัญญาที่ถือกำเนิดจาก',
     'about.hero.line2': 'ศรัทธายาวนานกว่าทศวรรษ',
-    'about.hero.subtitle': 'Bodhi Holi Tour ไม่ใช่เพียงบริษัทท่องเที่ยว แต่เป็นสะพานเชื่อมภูมิปัญญาโบราณกับผู้แสวงหาทางจิตวิญญาณยุคใหม่',
+    'about.hero.subtitle': 'Bodhi holy Tour ไม่ใช่เพียงบริษัทท่องเที่ยว แต่เป็นสะพานเชื่อมภูมิปัญญาโบราณกับผู้แสวงหาทางจิตวิญญาณยุคใหม่',
     'about.story.title': 'ก่อตั้งโดยคนท้องถิ่นที่เข้าใจพื้นที่จริง',
-    'about.story.p1': 'Bodhi Holi Tour ก่อตั้งโดยเทนซิน ไกด์ท้องถิ่นที่ใช้เวลากว่า 10 ปีเดินตามเส้นทางศักดิ์สิทธิ์ของพุทธคยา สารนาถ และกุสินารา',
+    'about.story.p1': 'Bodhi holy Tour ก่อตั้งโดยเทนซิน ไกด์ท้องถิ่นที่ใช้เวลากว่า 10 ปีเดินตามเส้นทางศักดิ์สิทธิ์ของพุทธคยา สารนาถ และกุสินารา',
     'about.story.p2': 'เมื่อได้ดูแลผู้แสวงบุญนับพันคนจากทั่วโลก เทนซินเห็นว่านักเดินทางจำนวนมากยังไม่ได้สัมผัสการเดินทางด้านในอย่างแท้จริง',
     'about.story.quote': 'ภารกิจของเราชัดเจน: เปลี่ยนการท่องเที่ยวให้เป็นการแสวงบุญ',
     'about.intent.title': 'เจตนาศักดิ์สิทธิ์ของเรา',
@@ -38,7 +38,7 @@ export default function About() {
               {tt('about.hero.line1', 'Wisdom born from')} <br/><span className="italic text-primary">{tt('about.hero.line2', 'a decade of devotion.')}</span>
             </h1>
             <p className="text-lg text-secondary max-w-xl leading-relaxed">
-              {tt('about.hero.subtitle', "Bodhi Holi Tour isn't just a travel agency; it is a bridge between the ancient wisdom of the East and the spiritual seeking of the modern world.")}
+              {tt('about.hero.subtitle', "Bodhi holy Tour isn't just a travel agency; it is a bridge between the ancient wisdom of the East and the spiritual seeking of the modern world.")}
             </p>
           </div>
           <div className="lg:col-span-5 relative">

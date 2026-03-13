@@ -29,7 +29,7 @@ const destinations: Destination[] = [
     category: ['buddhist'],
     highlight: 'Core Buddhist Circuit',
     title: 'Bodh Gaya — The Place of Enlightenment',
-    desc: 'The holiest of all Buddhist pilgrimage sites — where Siddhartha Gautama attained enlightenment beneath the sacred Bodhi Tree 2,500 years ago. The UNESCO-listed Mahabodhi Temple Complex draws millions of pilgrims from every corner of the world.',
+    desc: 'The holyest of all Buddhist pilgrimage sites — where Siddhartha Gautama attained enlightenment beneath the sacred Bodhi Tree 2,500 years ago. The UNESCO-listed Mahabodhi Temple Complex draws millions of pilgrims from every corner of the world.',
     sites: ['Mahabodhi Temple (UNESCO)', 'Sacred Bodhi Tree', 'Vajrasana (Diamond Throne)', '80ft Great Buddha Statue', '25+ International Monasteries', 'Lotus Pond', 'Archaeological Museum'],
     tips: 'Best time: October–March. Arrive at the Bodhi Tree before dawn for the most profound experience. Remove shoes before entering the complex.',
     cuisine: [

@@ -109,7 +109,7 @@ const resources = {
         keySites: 'Key Sites',
         travelTips: 'Travel Tips',
         bodhGayaTitle: 'Bodh Gaya — The Place of Enlightenment',
-        bodhGayaDesc: 'Bodh Gaya is the holiest of all Buddhist pilgrimage sites. It was here, under the sacred Bodhi Tree, that Siddhartha Gautama attained enlightenment and became the Buddha some 2,500 years ago. The Mahabodhi Temple Complex — a UNESCO World Heritage Site — stands at the centre of this ancient town in Bihar, India, drawing millions of pilgrims from every corner of the world.',
+        bodhGayaDesc: 'Bodh Gaya is the holyest of all Buddhist pilgrimage sites. It was here, under the sacred Bodhi Tree, that Siddhartha Gautama attained enlightenment and became the Buddha some 2,500 years ago. The Mahabodhi Temple Complex — a UNESCO World Heritage Site — stands at the centre of this ancient town in Bihar, India, drawing millions of pilgrims from every corner of the world.',
         bodhGayaSites: 'Mahabodhi Temple (UNESCO), Sacred Bodhi Tree, Vajrasana (Diamond Throne), 80ft Great Buddha Statue, 25+ International Monasteries, Lotus Pond, Archaeological Museum',
         bodhGayaTips: 'Best time to visit: October–March. Arrive at the Bodhi Tree before dawn for the quietest and most profound experience. Remove shoes before entering the complex.',
         sarnathTitle: 'Sarnath — The Deer Park of the First Teaching',
