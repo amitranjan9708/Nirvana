@@ -247,7 +247,7 @@ export default function Navbar() {
               onClick={() => setMobileOpen(o => !o)}
               aria-label="Toggle navigation"
               className="lg:hidden flex flex-col justify-center items-center w-9 h-9 gap-[5px] rounded-full"
-              style={{ color: scrolled ? BROWN.text : isHome ? '#ffffff' : '#2b160f' }}
+              style={{ color: mobileOpen ? '#2b160f' : scrolled ? BROWN.text : isHome ? '#ffffff' : '#2b160f' }}
             >
               <span className={`block h-[2px] w-5 bg-current rounded-full transition-all duration-300 origin-center ${mobileOpen ? 'translate-y-[7px] rotate-45' : ''}`} />
               <span className={`block h-[2px] w-5 bg-current rounded-full transition-all duration-300 ${mobileOpen ? 'opacity-0 scale-x-0' : ''}`} />
