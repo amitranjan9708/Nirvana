@@ -13,14 +13,14 @@ const languages = [
   { code: 'zh-TW', name: '繁體中文',          flag: '🇹🇼' },
 ];
 
-// Dark brown palette (matches app's inverse-surface: #422b22)
+// Scrolled navbar palette (white background)
 const BROWN = {
-  bg:       '#2e1a10',          // navbar bg after scroll
-  border:   'rgba(255,237,231,0.12)',
-  text:     '#ffede7',          // inverse-on-surface
-  textMute: 'rgba(255,237,231,0.65)',
-  active:   '#E8C96A',          // gold — active link
-  hover:    'rgba(255,237,231,0.08)',
+  bg:       '#ffffff',
+  border:   'rgba(43,22,15,0.12)',
+  text:     '#2b160f',
+  textMute: 'rgba(43,22,15,0.65)',
+  active:   '#974300',
+  hover:    'rgba(151,67,0,0.08)',
 };
 
 export default function Navbar() {
@@ -126,7 +126,7 @@ export default function Navbar() {
               ? '1px solid transparent'
               : '1px solid rgba(221,193,179,0.35)',
           boxShadow: scrolled
-            ? '0 4px 24px rgba(0,0,0,0.35)'
+            ? '0 4px 18px rgba(43,22,15,0.12)'
             : isHome
               ? 'none'
               : '0 1px 12px rgba(43,22,15,0.07)',
