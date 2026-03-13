@@ -1,10 +1,12 @@
-import { motion } from 'motion/react';
-import { ArrowRight, BadgeCheck, Users, Flower, MessageSquare, Star, Shield, Sparkles } from 'lucide-react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { ArrowRight, BadgeCheck, Users, Flower, MessageSquare, Star, Shield, Sparkles, CheckCircle, Languages, Coffee, Ticket, FileCheck, Compass, Tent, Waves, TrainFront, Camera, MapPin, Anchor, Wind, Fish, Binoculars, Mountain, Music, ChevronDown, ChevronUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 export default function Home() {
   const { t, i18n } = useTranslation();
+  const [showAllActivities, setShowAllActivities] = useState(false);
   const isThai = i18n.resolvedLanguage?.startsWith('th');
   const thHome: Record<string, string> = {
     'home.about.desc': 'พุทธคยาเป็นสถานที่ศักดิ์สิทธิ์ที่สุดแห่งหนึ่งในโลกพุทธ เป็นสถานที่ที่เจ้าชายสิทธัตถะตรัสรู้ใต้ต้นโพธิ์และกลายเป็นพระพุทธเจ้า',
@@ -106,9 +108,7 @@ export default function Home() {
             transition={{ duration: 0.8, ease: 'easeOut' }}
             className="space-y-6"
           >
-            <span className="inline-block px-5 py-1.5 rounded-full text-sm font-semibold tracking-widest uppercase border border-white/30 text-white/80">
-              {t('home.established')}
-            </span>
+
 
             <h1
               className="font-headline leading-tight text-white"
@@ -190,9 +190,9 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6 h-auto md:h-[600px]">
             <div className="md:col-span-8 relative rounded-xl overflow-hidden group">
-              <img 
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOQs9eaXrnEr8V0DsKt4HMi_V9rzyaZ6DmlkKyXRgmlLxdlr5HVX7W_Sm-na6Fq5_SN5Ma2rEwGeJR8OhpaLX9MEDBBzSZoorbnraVef82YlArZLdfyYx9Yg_rqeYdakSrZ8aqZJYafYOPb_m8am09_W1x-V1-FIHK8COIZN4ovyV1us0k2Mj_WrBrDD4fnqr_Zo3sqvVhhpexNMlGO-ytzigpX7cP_QGNPIexqOlYvP_GYiEExc8W1es-lbnMUE6Aw35hCckGwSE" 
+              <img
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOQs9eaXrnEr8V0DsKt4HMi_V9rzyaZ6DmlkKyXRgmlLxdlr5HVX7W_Sm-na6Fq5_SN5Ma2rEwGeJR8OhpaLX9MEDBBzSZoorbnraVef82YlArZLdfyYx9Yg_rqeYdakSrZ8aqZJYafYOPb_m8am09_W1x-V1-FIHK8COIZN4ovyV1us0k2Mj_WrBrDD4fnqr_Zo3sqvVhhpexNMlGO-ytzigpX7cP_QGNPIexqOlYvP_GYiEExc8W1es-lbnMUE6Aw35hCckGwSE"
                 alt="Intricate carvings on Mahabodhi Temple walls"
                 referrerPolicy="no-referrer"
               />
@@ -417,21 +417,254 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Comfort assurance strip */}
-          <div className="rounded-2xl p-8 grid grid-cols-1 md:grid-cols-3 gap-6 text-center"
+          {/* Redesigned Comfort assurance strip with images instead of icons */}
+          <div className="rounded-2xl p-8 grid grid-cols-1 md:grid-cols-3 gap-10 text-center"
             style={{ background: 'rgba(255,237,231,0.04)', border: '1px solid rgba(255,237,231,0.08)' }}
           >
             {[
-              { icon: <Shield size={28} />, title: tt('home.fleet.assurance1.title', 'GPS-Tracked & Insured'), desc: tt('home.fleet.assurance1.desc', 'Every vehicle carries full passenger insurance and is tracked 24/7 for your safety.') },
-              { icon: <Sparkles size={28} />, title: tt('home.fleet.assurance2.title', 'Immaculately Maintained'), desc: tt('home.fleet.assurance2.desc', 'Regular servicing, deep cleaning before each journey, and experienced drivers with clean records.') },
-              { icon: <Star size={28} />, title: tt('home.fleet.assurance3.title', 'No Hidden Charges'), desc: tt('home.fleet.assurance3.desc', 'What we quote is what you pay — fuel, tolls, parking, and driver allowances all included.') },
+              {
+                img: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=200&h=200&fit=crop&q=80',
+                title: tt('home.fleet.assurance1.title', 'GPS-Tracked & Insured'),
+                desc: tt('home.fleet.assurance1.desc', 'Every vehicle carries full passenger insurance and is tracked 24/7 for your safety.')
+              },
+              {
+                img: 'https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?w=200&h=200&fit=crop&q=80',
+                title: tt('home.fleet.assurance2.title', 'Premium Hospitality'),
+                desc: tt('home.fleet.assurance2.desc', 'Immaculate cleanliness, experienced drivers, and warm hospitality throughout your pilgrimage.')
+              },
+              {
+                img: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=200&h=200&fit=crop&q=80',
+                title: tt('home.fleet.assurance3.title', 'Transparent Pricing'),
+                desc: tt('home.fleet.assurance3.desc', 'No hidden charges. Fuel, tolls, parking, and driver allowances are all included in your quote.')
+              },
             ].map((item, i) => (
-              <div key={i} className="flex flex-col items-center gap-3">
-                <div style={{ color: '#E8C96A' }}>{item.icon}</div>
+              <div key={i} className="flex flex-col items-center gap-4">
+                <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-primary-fixed/30 shadow-lg mb-2">
+                  <img src={item.img} alt={item.title} className="w-full h-full object-cover" />
+                </div>
                 <h4 className="font-bold text-base" style={{ color: '#ffede7' }}>{item.title}</h4>
                 <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,237,231,0.55)' }}>{item.desc}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section (New) */}
+      <section className="py-24 px-6 relative overflow-hidden bg-surface-container-low">
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
+          <div className="w-full lg:w-1/2">
+            <span className="text-tertiary font-bold tracking-[0.2em] uppercase text-xs mb-4 block">Total Care Journey</span>
+            <h2 className="font-headline text-4xl md:text-5xl text-on-surface mb-8">Premium Services We Offer</h2>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {[
+                {
+                  title: 'Professional Escorts',
+                  desc: 'Fluent in English, Hindi/Local languages, and specifically trained for Thai, Malay, and international pilgrimage groups.',
+                  icon: <Languages className="text-primary" size={24} />
+                },
+                {
+                  title: 'On-the-Way Refreshments',
+                  desc: 'Premium mineral water and high-quality local snacks served throughout your journey in our vehicles.',
+                  icon: <Coffee className="text-secondary" size={24} />
+                },
+                {
+                  title: 'Seamless Ticketing',
+                  desc: 'We arrange all pre-booked entrance tickets for Taj Mahal, Sarnath, and all major monuments to save you time.',
+                  icon: <Ticket className="text-tertiary" size={24} />
+                },
+                {
+                  title: 'Immigration Support',
+                  desc: 'Full documentation handling and professional processing support for India-Nepal border crossings and visas.',
+                  icon: <FileCheck className="text-primary" size={24} />
+                }
+              ].map((service, i) => (
+                <div key={i} className="group bg-surface-container-highest/40 p-7 rounded-2xl border border-outline-variant/10 hover:border-primary/20 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300">
+                  <div className="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+                    {service.icon}
+                  </div>
+                  <h3 className="font-bold text-on-surface mb-2">{service.title}</h3>
+                  <p className="text-sm text-secondary leading-relaxed">{service.desc}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-10 flex items-center gap-4 p-5 bg-tertiary-fixed/10 rounded-2xl border border-tertiary-container/30">
+              <div className="w-12 h-12 rounded-full lotus-gradient flex items-center justify-center shrink-0">
+                <CheckCircle className="text-white" size={24} />
+              </div>
+              <div>
+                <h4 className="font-bold text-on-surface">Luxury Bus Service Included</h4>
+                <p className="text-sm text-secondary">Our premium fleet of 45-seater Volvo and Deluxe coaches is at your disposal for large groups.</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="w-full lg:w-1/2">
+            <div className="relative">
+              <div className="absolute -inset-4 bg-tertiary-container/20 rounded-3xl blur-2xl opacity-50" />
+              <img
+                src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&q=80"
+                alt="Luxury Tour Bus"
+                className="relative rounded-2xl shadow-2xl border border-outline-variant/10 w-full object-cover aspect-[4/3] transform translate-y-4 translate-x-4"
+              />
+              <img
+                src="https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?w=600&q=80"
+                alt="Hospitality Service"
+                className="absolute top-0 left-0 w-2/3 -translate-x-12 -translate-y-12 rounded-2xl shadow-2xl border border-surface-container-highest border-8"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Soulful Experiences Section (New) */}
+      <section className="py-24 px-6 bg-surface">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <span className="text-primary font-bold tracking-[0.2em] uppercase text-xs mb-4 block">Adventure & Serenity</span>
+            <h2 className="font-headline text-4xl md:text-5xl text-on-surface mb-6">Beyond the Temples: Soulful Experiences</h2>
+            <p className="text-secondary max-w-2xl mx-auto text-lg">
+              From high-altitude adventures to gentle riverside reflections — discover the fun, vibrant, and thrilling side of India & Nepal.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                title: 'Yak Riding at Tsomgo Lake',
+                location: 'Sikkim, India',
+                desc: 'An iconic experience across the frozen banks of the sacred Tsomgo Lake at 12,400 ft.',
+                img: 'https://images.unsplash.com/photo-1581791534721-e599df4417f7?w=800&q=80',
+                icon: <Compass className="text-primary" size={20} />
+              },
+              {
+                title: 'Paragliding in Pokhara',
+                location: 'Pokhara, Nepal',
+                desc: 'Soar like a bird with the Annapurna range behind you and the turquoise Phewa Lake below.',
+                img: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800&q=80',
+                icon: <Tent className="text-secondary" size={20} />
+              },
+              {
+                title: 'The Himalayan Toy Train',
+                location: 'Darjeeling, India',
+                desc: 'A UNESCO World Heritage ride through misty tea gardens and mountain loops since 1881.',
+                img: 'images/toy-train.jpg',
+                icon: <TrainFront className="text-tertiary" size={20} />
+              },
+              {
+                title: 'Dawn Boating on the Ganges',
+                location: 'Varanasi, India',
+                desc: 'Witness the cycle of life and death across the 84 ghats from the silence of the holy river.',
+                img: 'https://images.unsplash.com/photo-1561359313-0639aad49ca6?w=800&q=80',
+                icon: <Waves className="text-primary" size={20} />
+              },
+              {
+                title: 'Camel Safari in the Thar Desert',
+                location: 'Jaisalmer, India',
+                desc: 'Trek into the golden dunes of Rajasthan and sleep under a canopy of a million stars.',
+                img: 'https://images.unsplash.com/photo-1477587458883-47145ed94245?w=800&q=80',
+                icon: <Camera className="text-secondary" size={20} />
+              },
+              {
+                title: 'River Rafting in Rishikesh',
+                location: 'Uttarakhand, India',
+                desc: 'The ultimate thrill on the emerald waters of the Ganges — from world-class rapids to gentle flows.',
+                img: 'images/river-rafting.jpg',
+                icon: <Waves className="text-tertiary" size={20} />
+              },
+              {
+                title: 'Houseboat Cruise',
+                location: 'Alleppey, Kerala',
+                desc: 'Drift through the emerald backwaters on a traditional Kettuvallam with your private chef.',
+                img: 'images/cruise.jpg',
+                icon: <Anchor className="text-primary" size={20} />
+              },
+              {
+                title: 'Hot Air Ballooning',
+                location: 'Jaipur, Rajasthan',
+                desc: 'Witness the Pink City and its ancient forts from a silent, dawn perspective.',
+                img: 'https://images.unsplash.com/photo-1507501336603-6e31db2be093?w=800&q=80',
+                icon: <Wind className="text-secondary" size={20} />
+              },
+              {
+                title: 'Scuba Diving at Grande Island',
+                location: 'Goa, India',
+                desc: 'Explore the vibrant coral reefs and old shipwrecks in the warm waters of the Arabian Sea.',
+                img: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80',
+                icon: <Fish className="text-tertiary" size={20} />
+              },
+              {
+                title: 'Jungle Safari',
+                location: 'Chitwan, Nepal',
+                desc: 'Track the Greater One-horned Rhinoceros through the dense elephant grass and riverine forests.',
+                img: 'images/jungle-safari.jpg',
+                icon: <Binoculars className="text-primary" size={20} />
+              },
+              {
+                title: 'High-Altitude Trekking',
+                location: 'Leh, Ladakh',
+                desc: 'Challenge yourself on the Markha Valley trail under the shadow of 6,000m peaks.',
+                img: 'https://images.unsplash.com/photo-1590117070196-8486950266da?w=800&q=80',
+                icon: <Mountain className="text-secondary" size={20} />
+              },
+              {
+                title: 'Kathakali Performance',
+                location: 'Kochi, Kerala',
+                desc: 'Witness the oldest theater in the world — an intricate blend of dance, music, and ritual.',
+                img: 'https://images.unsplash.com/photo-1600100397608-de25e0bace38?w=800&q=80',
+                icon: <Music className="text-tertiary" size={20} />
+              }
+            ].slice(0, showAllActivities ? 12 : 6).map((act, i) => (
+              <motion.div
+                key={i}
+                layout
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                whileHover={{ y: -8 }}
+                className="group relative overflow-hidden rounded-3xl bg-surface-container-low border border-outline-variant/10 shadow-lg"
+              >
+                <div className="aspect-[4/5] overflow-hidden relative">
+                  <img src={act.img} alt={act.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-on-surface via-transparent to-transparent opacity-80" />
+
+                  <div className="absolute top-4 right-4 bg-surface/90 backdrop-blur-sm p-2 rounded-full shadow-lg">
+                    {act.icon}
+                  </div>
+
+                  <div className="absolute bottom-0 left-0 p-8 w-full">
+                    <span className="flex items-center gap-1.5 text-primary-fixed font-bold text-xs uppercase tracking-widest mb-2">
+                      <MapPin size={12} />
+                      {act.location}
+                    </span>
+                    <h3 className="font-headline text-2xl text-white mb-3 leading-tight">{act.title}</h3>
+                    <p className="text-white/70 text-sm leading-relaxed line-clamp-2 group-hover:line-clamp-none transition-all duration-300">
+                      {act.desc}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="mt-16 text-center">
+            <button
+              onClick={() => setShowAllActivities(!showAllActivities)}
+              className="inline-flex items-center gap-2 bg-primary text-on-primary px-8 py-4 rounded-full font-bold hover:bg-primary/90 transition-all shadow-lg hover:shadow-primary/20"
+            >
+              {showAllActivities ? (
+                <>
+                  <ChevronUp size={20} />
+                  Show Less
+                </>
+              ) : (
+                <>
+                  <ChevronDown size={20} />
+                  Explore More Activities
+                </>
+              )}
+            </button>
           </div>
         </div>
       </section>
@@ -445,77 +678,77 @@ export default function Home() {
             <div className="h-1 w-24 bg-primary mx-auto rounded-full mt-6"></div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Card 1 — Great Awakening Circuit */}
+            {/* Card 1 — Great Awakening Circuit (Buddhist) */}
             <div className="group bg-surface-container-lowest rounded-2xl overflow-hidden hover:translate-y-[-8px] transition-all duration-500">
               <div className="h-64 overflow-hidden relative">
                 <img
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9PdMGgBUu778m_8DALztERX1e-i0BQPVkjw9_rH7PTTwc6JFR5nni814-8ymlzrvv53i_4Jh8t0BR6rX2O6F72P5ipoLH5v-A0bHoImaAASfSwIXAaHXt9bsUhbO1g6PayM4ulpbhEId1b6vwXmHPf2MLRb5OrfrNCw4DqQuMFa3TNeRJq4H6xOHnpiJ6egGqebVL8eOlxSxtyvWY15aTRtSxScINYQwyWkF49HYLxgJYYostodjKtV90szjgqK1dak5_rzcZtBs"
-                  alt="Ancient stupa at Kushinagar at sunset"
-                  referrerPolicy="no-referrer"
+                  alt="Buddhist Stupa"
                 />
-                <div className="absolute top-4 right-4 bg-surface px-3 py-1 rounded-full text-xs font-bold text-primary">
-                  7 DAYS
-                </div>
+                <div className="absolute top-4 left-4 bg-tertiary text-on-tertiary px-3 py-1 rounded-full text-xs font-bold">MOST POPULAR</div>
+                <div className="absolute top-4 right-4 bg-surface/90 text-on-surface px-3 py-1 rounded-full text-xs font-bold">7 DAYS</div>
               </div>
               <div className="p-8">
-                <h3 className="font-headline text-2xl mb-2">{tt('home.popular.card1.title', 'The Great Awakening Circuit')}</h3>
-                <p className="text-secondary text-sm mb-2">{tt('home.popular.card1.meta', 'Bodh Gaya · Varanasi · Sarnath · Kushinagar')}</p>
-                <p className="text-secondary text-sm mb-6 line-clamp-2">{tt('home.popular.card1.desc', "The complete arc of the Buddha's life across four sacred cities in 7 days.")}</p>
+                <p className="text-primary font-bold tracking-widest text-[10px] uppercase mb-2">Buddhist Pilgrimage</p>
+                <h3 className="font-headline text-2xl mb-2">The Great Awakening</h3>
+                <p className="text-secondary text-sm mb-6 line-clamp-2">A comprehensive journey through the four most sacred sites: Bodh Gaya, Sarnath, Kushinagar, and Varanasi.</p>
                 <div className="flex justify-between items-center pt-6 border-t border-outline-variant/10">
                   <span className="text-primary font-bold text-xl">$1,499</span>
-                  <Link to="/tours" className="text-tertiary font-semibold flex items-center gap-1 group/btn">
-                    {t('ui.details')}
+                  <Link to="/tours" className="text-primary font-bold text-sm flex items-center gap-1 group/btn">
+                    Details
                     <ArrowRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
                   </Link>
                 </div>
               </div>
             </div>
-            {/* Card 2 — Sacred Bodh Gaya Immersion */}
-            <div className="group bg-surface-container-lowest rounded-2xl overflow-hidden md:-mt-8 hover:translate-y-[-16px] transition-all duration-500 sacred-glow border border-primary-fixed">
+
+            {/* Card 2 — Golden Triangle (Heritage) */}
+            <div className="group bg-surface-container-lowest rounded-2xl overflow-hidden hover:translate-y-[-16px] transition-all duration-500 sacred-glow border border-amber-500/30 shadow-lg md:-mt-8">
               <div className="h-72 overflow-hidden relative">
                 <img
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAp2qF5E3XK5I4jnFrtdVw7kX_hdxLfatJvNeuVCUIcfn9O6Egdctoa6tQhBukZz5vXGsqLOJBPLs4Hx3sbzVAw1nNM6zJcpqwFr_4yiafohT5w0nuskzcBu8ZBJnxVHV_2xAYtmlpYwO6-_E6aS3gJ2uEPBMCr6KK8hikRi6_gD8gIhgR_mXte4809gL7sMfiz1VQ3X_X9NIMUccrqsF7WXO8ErrsD9FQoMddGE4exJ0Srj_LzB-yNYUzx18KlkAF-6BX-n-wzqrY"
-                  alt="Mahabodhi temple spire against clear blue sky"
-                  referrerPolicy="no-referrer"
+                  src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&q=80"
+                  alt="Taj Mahal Agra"
                 />
-                <div className="absolute top-4 right-4 bg-tertiary text-on-tertiary px-3 py-1 rounded-full text-xs font-bold">
+                <div className="absolute top-4 right-4 bg-amber-500 text-white px-3 py-1 rounded-full text-xs font-bold">
                   BEST SELLER
                 </div>
               </div>
               <div className="p-8">
-                <h3 className="font-headline text-2xl mb-2">{tt('home.popular.card2.title', 'Sacred Bodh Gaya Immersion')}</h3>
-                <p className="text-secondary text-sm mb-2">{tt('home.popular.card2.meta', 'Bodh Gaya · 4 Days')}</p>
-                <p className="text-secondary text-sm mb-6 line-clamp-2">{tt('home.popular.card2.desc', 'Deep 4-day retreat at the Mahabodhi Complex — daily meditations, monk encounters, and monastery walks.')}</p>
+                <p className="text-amber-600 font-bold tracking-widest text-[10px] uppercase mb-2">Heritage Classic</p>
+                <h3 className="font-headline text-2xl mb-2">Golden Triangle Loop</h3>
+                <p className="text-secondary text-sm mb-2">Delhi · Agra · Jaipur</p>
+                <p className="text-secondary text-sm mb-6 line-clamp-2">Behold the majestic Taj Mahal, Jaipur's Pink Palaces, and the imperial history of Delhi in one iconic journey.</p>
                 <div className="flex justify-between items-center pt-6 border-t border-outline-variant/10">
-                  <span className="text-primary font-bold text-xl">$649</span>
+                  <span className="text-primary font-bold text-xl">$899</span>
                   <Link to="/tours" className="text-tertiary font-semibold flex items-center gap-1 group/btn">
-                    {t('ui.details')}
+                    Details
                     <ArrowRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
                   </Link>
                 </div>
               </div>
             </div>
-            {/* Card 3 — Grand Lotus Circuit */}
+
+            {/* Card 3 — Buddha & Taj (Mixed Fusion) */}
             <div className="group bg-surface-container-lowest rounded-2xl overflow-hidden hover:translate-y-[-8px] transition-all duration-500">
               <div className="h-64 overflow-hidden relative">
                 <img
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqcEabaiMR9Nm1d8XV2ewmJuX3y3a4JOWT4MMHp1w3Kc5dYaZTNULPZ2Qp_80wObQuUlgFtp20IsS8GRqqF40NS-T6AlciB0B_PUisbs5Mphjtpm-4JVZ1eFY37JNigB4Jl9eY7tWb3eryYP8M2_U2EaU2Rmd4eRkGc5h7o8qaRYiXXymbYTp-nnxv38wphvVROdp9fH87z56UsFX51yNA-6aKmqyL-mDakMMYjjfZCZbSGWz6Y04i7a_m5FT5gtkyx7FNC8rJnag"
-                  alt="Buddhist monks walking in meditation"
-                  referrerPolicy="no-referrer"
+                  src="https://images.unsplash.com/photo-1587474260584-136574528ed5?w=800&q=80"
+                  alt="India Heritage"
                 />
-                <div className="absolute top-4 right-4 bg-tertiary-fixed text-on-surface px-3 py-1 rounded-full text-xs font-bold">
-                  PREMIUM · 14 DAYS
+                <div className="absolute top-4 right-4 bg-primary text-on-primary px-3 py-1 rounded-full text-xs font-bold">
+                  MIXED CIRCUIT · 10 DAYS
                 </div>
               </div>
               <div className="p-8">
-                <h3 className="font-headline text-2xl mb-2">{tt('home.popular.card3.title', 'Grand Lotus Circuit')}</h3>
-                <p className="text-secondary text-sm mb-2">{tt('home.popular.card3.meta', 'India + Nepal · 8 Sacred Sites')}</p>
-                <p className="text-secondary text-sm mb-6 line-clamp-2">{tt('home.popular.card3.desc', 'Every major Buddhist site across India and Nepal — Lumbini, Bodh Gaya, Nalanda, Sarnath, Kushinagar, and beyond.')}</p>
+                <p className="text-tertiary font-bold tracking-widest text-[10px] uppercase mb-2">Enlightenment & Empire</p>
+                <h3 className="font-headline text-2xl mb-2">Buddha to the Taj</h3>
+                <p className="text-secondary text-sm mb-2">Mixed · 6 Sacred Cities</p>
+                <p className="text-secondary text-sm mb-6 line-clamp-2">The ultimate fusion: from the Bodhi Tree's silence to the Taj's marble perfection across North India's heartland.</p>
                 <div className="flex justify-between items-center pt-6 border-t border-outline-variant/10">
-                  <span className="text-primary font-bold text-xl">$2,799</span>
+                  <span className="text-primary font-bold text-xl">$1,699</span>
                   <Link to="/tours" className="text-tertiary font-semibold flex items-center gap-1 group/btn">
                     {t('ui.details')}
                     <ArrowRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
