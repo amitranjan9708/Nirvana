@@ -141,7 +141,7 @@ export default function Navbar() {
               className="font-headline font-bold text-lg tracking-tight"
               style={{ color: logoText, transition: 'color 0.35s' }}
             >
-              Bodhi holy Tour
+              Bodhi Holy Tour
             </span>
           </Link>
 

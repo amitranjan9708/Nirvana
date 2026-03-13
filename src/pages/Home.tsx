@@ -83,7 +83,7 @@ export default function Home() {
       animate={{ opacity: 1 }}
     >
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
+      <section className="hero-literata relative min-h-screen flex items-center justify-center text-center overflow-hidden">
         {/* Background image */}
         <div className="absolute inset-0 z-0">
           <img
@@ -118,7 +118,7 @@ export default function Home() {
               <span className="italic" style={{ color: '#E8C96A' }}>{t('home.heroLine2')}</span>
             </h1>
 
-            <p className="text-white/90 leading-relaxed mx-auto max-w-xl" style={{ fontSize: 'clamp(1rem, 2vw, 1.2rem)' }}>
+            <p className="hero-subtitle-default text-white/90 leading-relaxed mx-auto max-w-xl" style={{ fontSize: 'clamp(1rem, 2vw, 1.2rem)' }}>
               {t('home.heroSubtitle')}
             </p>
           </motion.div>
