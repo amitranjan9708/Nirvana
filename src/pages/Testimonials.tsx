@@ -1,0 +1,210 @@
+import { useTranslation } from 'react-i18next';
+import { motion } from 'motion/react';
+import { Quote } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
+const testimonials = [
+  {
+    name: 'Somchai P.',
+    country: '🇹🇭 Thailand',
+    rating: 5,
+    text: 'An unforgettable spiritual journey. Our guide was incredibly knowledgeable about the history and significance of every sacred site. The meditation session at the Bodhi Tree was life-changing.',
+    tour: 'Sacred Bodh Gaya Immersion',
+  },
+  {
+    name: 'Nguyen Thi M.',
+    country: '🇻🇳 Vietnam',
+    rating: 5,
+    text: 'I travelled all the way from Ho Chi Minh City and it was worth every moment. The tour was well organised, deeply respectful of our Buddhist traditions, and profoundly moving.',
+    tour: 'The Great Awakening Circuit',
+  },
+  {
+    name: 'Ahmad R.',
+    country: '🇲🇾 Malaysia',
+    rating: 5,
+    text: 'Excellent service and deep understanding of Buddhist heritage. The small group size made everything very personal. Our guide spoke Malay which made the experience so much richer.',
+    tour: 'Bodh Gaya Sacred Day Tour',
+  },
+  {
+    name: 'Dewi S.',
+    country: '🇮🇩 Indonesia',
+    rating: 5,
+    text: 'The best pilgrimage experience we could have asked for. Every detail was taken care of. The sunrise meditation at the Mahabodhi Temple was absolutely magical — I wept.',
+    tour: 'Sacred Bodh Gaya Immersion',
+  },
+  {
+    name: 'Prakit W.',
+    country: '🇹🇭 Thailand',
+    rating: 5,
+    text: 'We came as a group of 8 from Bangkok. The guide arranged everything perfectly — transport, meals, and most importantly the spiritual experience was authentic and deeply respectful.',
+    tour: 'The Great Awakening Circuit',
+  },
+  {
+    name: 'Linh T.',
+    country: '🇻🇳 Vietnam',
+    rating: 5,
+    text: 'This was my second time visiting Bodh Gaya but the first with a proper guide. The difference was incredible — so much history and meaning I had missed entirely on my own.',
+    tour: 'Bodh Gaya Sacred Day Tour',
+  },
+  {
+    name: 'Wei Chen L.',
+    country: '🇨🇳 China',
+    rating: 5,
+    text: 'Our Chinese-speaking guide made the entire pilgrimage so meaningful. The 7-day circuit covering all major Buddhist sites was perfectly planned. A journey of a lifetime.',
+    tour: 'The Great Awakening Circuit',
+  },
+  {
+    name: 'Siti A.',
+    country: '🇲🇾 Malaysia',
+    rating: 5,
+    text: 'The 4-day Bodh Gaya immersion was perfectly paced. We had time for deep meditation, temple visits, and reflection. The guide\'s knowledge of Buddhist history was extraordinary.',
+    tour: 'Sacred Bodh Gaya Immersion',
+  },
+  {
+    name: 'Budi P.',
+    country: '🇮🇩 Indonesia',
+    rating: 5,
+    text: 'Travelling from Jakarta to Bodh Gaya was a dream come true. The agency made it seamless. The monastery visits and interactions with resident monks were the highlights.',
+    tour: 'Sacred Bodh Gaya Immersion',
+  },
+  {
+    name: 'Mei Lin C.',
+    country: '🇹🇼 Taiwan',
+    rating: 5,
+    text: 'A beautifully organised pilgrimage. The guide\'s deep respect for Buddhist traditions and knowledge of every sacred site made this the most meaningful trip of my entire life.',
+    tour: 'Grand Lotus Circuit',
+  },
+  {
+    name: 'Dr. Elena V.',
+    country: '🇩🇪 Germany',
+    rating: 5,
+    text: 'As a professor of religious studies, I was sceptical of tour operators. Priya\'s knowledge of Nalanda\'s history left me speechless — she knew things I\'d only read in academic papers.',
+    tour: 'Monastic Heritage Walk',
+  },
+  {
+    name: 'Hai D.',
+    country: '🇻🇳 Vietnam',
+    rating: 5,
+    text: 'Perfect for our Buddhist group from Hanoi. Everything from accommodation to temple visits was arranged thoughtfully. The Vietnamese language support was a wonderful bonus.',
+    tour: 'Varanasi & Sarnath Retreat',
+  },
+];
+
+const stats = [
+  { value: '3,200+', label: 'Pilgrims Guided' },
+  { value: '42',     label: 'Countries' },
+  { value: '4.9/5',  label: 'Average Rating' },
+  { value: '10+',    label: 'Years of Operation' },
+];
+
+export default function Testimonials() {
+  const { t } = useTranslation();
+
+  return (
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="pt-16">
+
+      {/* Hero */}
+      <section className="py-20 px-6 bg-surface-container-low">
+        <div className="max-w-7xl mx-auto text-center">
+          <span className="text-tertiary font-bold tracking-[0.2em] uppercase text-xs mb-4 block">
+            Pilgrims' Words
+          </span>
+          <h1 className="font-headline text-5xl lg:text-6xl text-on-surface leading-tight mb-6">
+            {t('testimonialsPage.pageTitle')}
+          </h1>
+          <div className="h-1 w-20 bg-tertiary-container rounded-full mx-auto mb-6" />
+          <p className="text-secondary text-lg max-w-2xl mx-auto leading-relaxed">
+            {t('testimonialsPage.pageSubtitle')}
+          </p>
+        </div>
+      </section>
+
+      {/* Stats Strip */}
+      <section className="bg-surface border-b border-outline-variant/20">
+        <div className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+          {stats.map(stat => (
+            <div key={stat.label}>
+              <p className="font-headline text-4xl text-primary font-bold mb-1">{stat.value}</p>
+              <p className="text-secondary text-sm uppercase tracking-wider font-medium">{stat.label}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Testimonials Grid */}
+      <section className="py-20 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {testimonials.map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.45, delay: (i % 3) * 0.08 }}
+                className="bg-surface-container-lowest rounded-2xl p-8 border border-outline-variant/10 sacred-glow flex flex-col"
+              >
+                {/* Header */}
+                <div className="flex items-center gap-4 mb-5">
+                  <div className="w-12 h-12 rounded-full lotus-gradient flex items-center justify-center text-white font-headline font-bold text-xl shrink-0">
+                    {item.name[0]}
+                  </div>
+                  <div>
+                    <p className="font-bold text-on-surface">{item.name}</p>
+                    <p className="text-secondary text-sm">{item.country}</p>
+                  </div>
+                </div>
+
+                {/* Stars */}
+                <div className="flex gap-0.5 mb-4">
+                  {Array.from({ length: item.rating }).map((_, j) => (
+                    <svg key={j} className="w-4 h-4 text-tertiary fill-tertiary" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+
+                {/* Quote */}
+                <Quote className="text-primary-fixed mb-3 shrink-0" size={22} />
+                <p className="text-on-surface-variant leading-relaxed text-sm italic flex-grow">
+                  "{item.text}"
+                </p>
+
+                {/* Tour tag */}
+                <div className="mt-6 pt-5 border-t border-outline-variant/15 flex items-center gap-2 text-xs text-secondary font-medium">
+                  <span className="text-base">🏷️</span>
+                  <span className="font-semibold text-on-surface">{t('testimonialsPage.tourLabel')}:</span>
+                  <span>{item.tour}</span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-20 px-6 bg-surface-container text-center">
+        <p className="font-headline text-3xl md:text-4xl text-on-surface mb-4">
+          Ready to write your own story?
+        </p>
+        <p className="text-secondary mb-8 max-w-lg mx-auto">
+          Join thousands of pilgrims who have walked these sacred paths with Nirvana Travels.
+        </p>
+        <div className="flex flex-wrap justify-center gap-4">
+          <Link
+            to="/tours"
+            className="lotus-gradient text-white px-8 py-4 rounded-full font-bold text-sm shadow-lg shadow-primary/20 hover:shadow-xl transition-all"
+          >
+            Browse All Tours
+          </Link>
+          <Link
+            to="/contact"
+            className="border border-outline-variant text-on-surface px-8 py-4 rounded-full font-bold text-sm hover:border-primary hover:text-primary transition-all"
+          >
+            Talk to a Specialist
+          </Link>
+        </div>
+      </section>
+    </motion.div>
+  );
+}

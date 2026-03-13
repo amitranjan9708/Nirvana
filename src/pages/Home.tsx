@@ -7,56 +7,98 @@ export default function Home() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="pt-16"
     >
       {/* Hero Section */}
-      <section className="relative min-h-[85vh] flex items-center overflow-hidden px-6 py-24">
+      <section className="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
+        {/* Background image */}
         <div className="absolute inset-0 z-0">
-          <img 
-            className="w-full h-full object-cover opacity-90 scale-105" 
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuC--mgNqR4JbfTFhChX7vKKPhJbzO29m6e4Kx9BC7i-FkbR_c85brY5Kp5kL_lGpl8TsaGDavXVXEIQWcL5HrVsUsydvmPS-fXdex3XZFcBVsGPCeZADadYXAf5hfbHYK0k3YNCjncI4T7zVNGiE3zRluO9kVlbPZIy0J1gc1_SSqKfXGQGEMwwT6xR4BBXCAhqKAW9Q9PL5a1cQLYMKzoFngEi04Al5Q4mErMYRNbX1kA2RbpNS_FZ6krQkfks_dwKHeoUdoZhBsQ" 
-            alt="Golden sunrise over Mahabodhi Temple spire"
-            referrerPolicy="no-referrer"
+          <img
+            className="w-full h-full object-cover"
+            src="hero-mahabodhi.png"
+            alt="Mahabodhi Temple at golden hour, Bodh Gaya"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-surface via-surface/40 to-transparent"></div>
+          {/* Dark brown overlay — top → bottom, matching the spiritual palette */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background: 'linear-gradient(to bottom, rgba(62,39,35,0.35) 0%, rgba(62,39,35,0.60) 50%, rgba(62,39,35,0.82) 100%)',
+            }}
+          />
         </div>
-        <div className="relative z-10 max-w-7xl mx-auto w-full grid md:grid-cols-2 gap-12">
-          <div className="flex flex-col justify-center space-y-8">
-            <motion.div 
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              className="space-y-4"
+
+        {/* Content */}
+        <div className="relative z-10 max-w-3xl mx-auto px-6 py-32">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+            className="space-y-6"
+          >
+            <span className="inline-block px-5 py-1.5 rounded-full text-sm font-semibold tracking-widest uppercase border border-white/30 text-white/80">
+              Established 2014 · Bodh Gaya, India
+            </span>
+
+            <h1
+              className="font-headline leading-tight text-white"
+              style={{ fontSize: 'clamp(2.2rem, 6vw, 4rem)', textShadow: '0 2px 24px rgba(0,0,0,0.35)' }}
             >
-              <span className="inline-block px-4 py-1.5 bg-tertiary-fixed text-on-tertiary-fixed-variant rounded-full text-sm font-semibold tracking-wide">
-                Established 2014
-              </span>
-              <h1 className="font-headline text-5xl md:text-7xl text-on-surface leading-tight">
-                Walk in the <br/>
-                <span className="italic text-primary">Footsteps</span> of <br/>
-                the Buddha
-              </h1>
-              <p className="text-lg md:text-xl text-secondary max-w-md leading-relaxed">
-                Authentic Buddhist pilgrimage tours in Bodh Gaya guided by experienced local experts.
-              </p>
-            </motion.div>
-            <motion.div 
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.4 }}
-              className="flex items-center gap-6"
+              Walk in the Footsteps<br />
+              <span className="italic" style={{ color: '#E8C96A' }}>of the Buddha</span>
+            </h1>
+
+            <p className="text-white/90 leading-relaxed mx-auto max-w-xl" style={{ fontSize: 'clamp(1rem, 2vw, 1.2rem)' }}>
+              Authentic Buddhist pilgrimage tours in Bodh Gaya guided by experienced local experts.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.25, ease: 'easeOut' }}
+            className="mt-10 flex flex-wrap items-center justify-center gap-4"
+          >
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-bold text-white transition-all hover:-translate-y-0.5"
+              style={{
+                background: 'linear-gradient(135deg, #C8A951, #E8941A)',
+                boxShadow: '0 4px 20px rgba(200,169,81,0.35)',
+              }}
             >
-              <Link to="/tours" className="lotus-gradient text-on-primary px-8 py-4 rounded-full font-bold text-lg hover:opacity-90 transition-all flex items-center gap-2">
-                Book a Tour
-                <ArrowRight size={20} />
-              </Link>
-              <Link to="/contact" className="text-on-surface font-semibold flex items-center gap-2 group">
-                Explore Destinations
-                <div className="h-[1px] w-8 bg-outline-variant group-hover:w-12 transition-all"></div>
-              </Link>
-            </motion.div>
-          </div>
+              Book a Tour
+              <ArrowRight size={18} />
+            </Link>
+            <Link
+              to="/tours"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-bold text-white border-2 border-white/70 hover:bg-white hover:text-on-surface transition-all"
+            >
+              Explore Pilgrimages
+            </Link>
+          </motion.div>
+
+          {/* Trust indicators */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="mt-16 flex flex-wrap items-center justify-center gap-8 text-white/60 text-sm"
+          >
+            <span>✦ 10+ Years Experience</span>
+            <span>✦ 3,200+ Pilgrims Guided</span>
+            <span>✦ Small Groups (max 12)</span>
+          </motion.div>
         </div>
+
+        {/* Scroll cue */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-white/40 text-xs tracking-widest uppercase"
+        >
+          <span>Scroll</span>
+          <div className="w-[1px] h-8 bg-white/30" />
+        </motion.div>
       </section>
 
       {/* About Bodh Gaya */}
@@ -156,16 +198,17 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="font-headline text-4xl md:text-5xl mb-4">Popular Tours</h2>
-            <div className="h-1 w-24 bg-primary mx-auto rounded-full"></div>
+            <p className="text-secondary max-w-xl mx-auto">From a single sacred day to a 14-day grand circuit — choose the depth your journey calls for.</p>
+            <div className="h-1 w-24 bg-primary mx-auto rounded-full mt-6"></div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Card 1 */}
+            {/* Card 1 — Great Awakening Circuit */}
             <div className="group bg-surface-container-lowest rounded-2xl overflow-hidden hover:translate-y-[-8px] transition-all duration-500">
               <div className="h-64 overflow-hidden relative">
-                <img 
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7aFVie-PvCEL4LNUPpbuqPBgusrA_o8_QkrazSNSDSK3OduY8-ud_yv-foAKcScBZAWCgfnjq6EZWeVCyNAX4G9uNbGwBwEJ6fRNHRtdkOq5nuApRgMMuZG1VV1i7lBqG8DvusFMpNawaiB0Mt9uR3rwG8ZazTG2n4XBFMbqotFLcQaJlhwen7OYho8tQHDJSA5BqeKMuOCQVtliC-eiNAQMzNYwhu5X-7seTIKLoKyFUsOWaxbW4lhoO9WNptprREYBcNn-GuXM" 
-                  alt="Pilgrims chanting at sunset"
+                <img
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9PdMGgBUu778m_8DALztERX1e-i0BQPVkjw9_rH7PTTwc6JFR5nni814-8ymlzrvv53i_4Jh8t0BR6rX2O6F72P5ipoLH5v-A0bHoImaAASfSwIXAaHXt9bsUhbO1g6PayM4ulpbhEId1b6vwXmHPf2MLRb5OrfrNCw4DqQuMFa3TNeRJq4H6xOHnpiJ6egGqebVL8eOlxSxtyvWY15aTRtSxScINYQwyWkF49HYLxgJYYostodjKtV90szjgqK1dak5_rzcZtBs"
+                  alt="Ancient stupa at Kushinagar at sunset"
                   referrerPolicy="no-referrer"
                 />
                 <div className="absolute top-4 right-4 bg-surface px-3 py-1 rounded-full text-xs font-bold text-primary">
@@ -173,24 +216,25 @@ export default function Home() {
                 </div>
               </div>
               <div className="p-8">
-                <h3 className="font-headline text-2xl mb-3">Enlightenment Path</h3>
-                <p className="text-secondary text-sm mb-6 line-clamp-2">A deep dive into the four major sites of the Buddha's life across India.</p>
+                <h3 className="font-headline text-2xl mb-2">The Great Awakening Circuit</h3>
+                <p className="text-secondary text-sm mb-2">Bodh Gaya · Varanasi · Sarnath · Kushinagar</p>
+                <p className="text-secondary text-sm mb-6 line-clamp-2">The complete arc of the Buddha's life across four sacred cities in 7 days.</p>
                 <div className="flex justify-between items-center pt-6 border-t border-outline-variant/10">
-                  <span className="text-primary font-bold text-xl">$1,299</span>
+                  <span className="text-primary font-bold text-xl">$1,499</span>
                   <Link to="/tours" className="text-tertiary font-semibold flex items-center gap-1 group/btn">
-                    Details 
+                    Details
                     <ArrowRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
                   </Link>
                 </div>
               </div>
             </div>
-            {/* Card 2 */}
+            {/* Card 2 — Sacred Bodh Gaya Immersion */}
             <div className="group bg-surface-container-lowest rounded-2xl overflow-hidden md:-mt-8 hover:translate-y-[-16px] transition-all duration-500 sacred-glow border border-primary-fixed">
               <div className="h-72 overflow-hidden relative">
-                <img 
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqjLhXX7T3AFFq5kd51LoUkPkW50DEFgoyoJxMzN1rJfAUjyPtquShFMymEjH6VEzEWZLhgWzwB-8m5UzJ-rLDT0yX7ril-3qMuHa74CNI9csOoWSfXsk-n7TzojloVBTC1lBOoPJL73QyuG_ahd-C90tXheTXzfaWbhmiKP3VsDWG-2RdUNOuY9RunyzZQnj-0-E51Oa-K_7UafdgkNXXlskSgjOz1x4C-3anbQk-ZRuKJi8VWiQEWjRyVdqyxUGJZOiCenWGGmw" 
-                  alt="Bodhi Tree at night with lanterns"
+                <img
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAp2qF5E3XK5I4jnFrtdVw7kX_hdxLfatJvNeuVCUIcfn9O6Egdctoa6tQhBukZz5vXGsqLOJBPLs4Hx3sbzVAw1nNM6zJcpqwFr_4yiafohT5w0nuskzcBu8ZBJnxVHV_2xAYtmlpYwO6-_E6aS3gJ2uEPBMCr6KK8hikRi6_gD8gIhgR_mXte4809gL7sMfiz1VQ3X_X9NIMUccrqsF7WXO8ErrsD9FQoMddGE4exJ0Srj_LzB-yNYUzx18KlkAF-6BX-n-wzqrY"
+                  alt="Mahabodhi temple spire against clear blue sky"
                   referrerPolicy="no-referrer"
                 />
                 <div className="absolute top-4 right-4 bg-tertiary text-on-tertiary px-3 py-1 rounded-full text-xs font-bold">
@@ -198,42 +242,50 @@ export default function Home() {
                 </div>
               </div>
               <div className="p-8">
-                <h3 className="font-headline text-2xl mb-3">Sacred Bodh Gaya</h3>
-                <p className="text-secondary text-sm mb-6 line-clamp-2">Immersive 4-day experience focused solely on the sacred energy of the Mahabodhi complex.</p>
+                <h3 className="font-headline text-2xl mb-2">Sacred Bodh Gaya Immersion</h3>
+                <p className="text-secondary text-sm mb-2">Bodh Gaya · 4 Days</p>
+                <p className="text-secondary text-sm mb-6 line-clamp-2">Deep 4-day retreat at the Mahabodhi Complex — daily meditations, monk encounters, and monastery walks.</p>
                 <div className="flex justify-between items-center pt-6 border-t border-outline-variant/10">
                   <span className="text-primary font-bold text-xl">$649</span>
                   <Link to="/tours" className="text-tertiary font-semibold flex items-center gap-1 group/btn">
-                    Details 
+                    Details
                     <ArrowRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
                   </Link>
                 </div>
               </div>
             </div>
-            {/* Card 3 */}
+            {/* Card 3 — Grand Lotus Circuit */}
             <div className="group bg-surface-container-lowest rounded-2xl overflow-hidden hover:translate-y-[-8px] transition-all duration-500">
               <div className="h-64 overflow-hidden relative">
-                <img 
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqcEabaiMR9Nm1d8XV2ewmJuX3y3a4JOWT4MMHp1w3Kc5dYaZTNULPZ2Qp_80wObQuUlgFtp20IsS8GRqqF40NS-T6AlciB0B_PUisbs5Mphjtpm-4JVZ1eFY37JNigB4Jl9eY7tWb3eryYP8M2_U2EaU2Rmd4eRkGc5h7o8qaRYiXXymbYTp-nnxv38wphvVROdp9fH87z56UsFX51yNA-6aKmqyL-mDakMMYjjfZCZbSGWz6Y04i7a_m5FT5gtkyx7FNC8rJnag" 
+                <img
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqcEabaiMR9Nm1d8XV2ewmJuX3y3a4JOWT4MMHp1w3Kc5dYaZTNULPZ2Qp_80wObQuUlgFtp20IsS8GRqqF40NS-T6AlciB0B_PUisbs5Mphjtpm-4JVZ1eFY37JNigB4Jl9eY7tWb3eryYP8M2_U2EaU2Rmd4eRkGc5h7o8qaRYiXXymbYTp-nnxv38wphvVROdp9fH87z56UsFX51yNA-6aKmqyL-mDakMMYjjfZCZbSGWz6Y04i7a_m5FT5gtkyx7FNC8rJnag"
                   alt="Buddhist monks walking in meditation"
                   referrerPolicy="no-referrer"
                 />
-                <div className="absolute top-4 right-4 bg-surface px-3 py-1 rounded-full text-xs font-bold text-primary">
-                  14 DAYS
+                <div className="absolute top-4 right-4 bg-tertiary-fixed text-on-surface px-3 py-1 rounded-full text-xs font-bold">
+                  PREMIUM · 14 DAYS
                 </div>
               </div>
               <div className="p-8">
-                <h3 className="font-headline text-2xl mb-3">Grand Lotus Circuit</h3>
-                <p className="text-secondary text-sm mb-6 line-clamp-2">Comprehensive journey through India and Nepal, visiting every major Buddhist heritage site.</p>
+                <h3 className="font-headline text-2xl mb-2">Grand Lotus Circuit</h3>
+                <p className="text-secondary text-sm mb-2">India + Nepal · 8 Sacred Sites</p>
+                <p className="text-secondary text-sm mb-6 line-clamp-2">Every major Buddhist site across India and Nepal — Lumbini, Bodh Gaya, Nalanda, Sarnath, Kushinagar, and beyond.</p>
                 <div className="flex justify-between items-center pt-6 border-t border-outline-variant/10">
-                  <span className="text-primary font-bold text-xl">$2,499</span>
+                  <span className="text-primary font-bold text-xl">$2,799</span>
                   <Link to="/tours" className="text-tertiary font-semibold flex items-center gap-1 group/btn">
-                    Details 
+                    Details
                     <ArrowRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
                   </Link>
                 </div>
               </div>
             </div>
+          </div>
+          <div className="text-center mt-12">
+            <Link to="/tours" className="inline-flex items-center gap-2 border border-outline-variant text-on-surface px-8 py-3 rounded-full font-bold text-sm hover:border-primary hover:text-primary transition-all">
+              View All 6 Tours
+              <ArrowRight size={16} />
+            </Link>
           </div>
         </div>
       </section>

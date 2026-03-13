@@ -23,6 +23,20 @@
   --color-tertiary-fixed: #ffe088;
   --color-inverse-surface: #422b22;
   --color-inverse-on-surface: #ffede7;
+
+  /* Extended palette — derived from Material Design tonal system */
+  --color-surface-container-lowest: #fff7f4;
+  --color-on-surface-variant: #5c3d35;
+  --color-primary-container: #ffdbcc;
+  --color-on-primary-container: #360e00;
+  --color-tertiary-container: #fff0a3;
+  --color-on-tertiary-fixed-variant: #4a3c00;
+  --color-on-tertiary-container: #231b00;
+  --color-on-primary-fixed: #2e0a00;
+  --color-primary-fixed-dim: #ffb68d;
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
 }
 
 @layer base {
