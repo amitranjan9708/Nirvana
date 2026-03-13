@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import type { ReactNode } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { MapPin, Lightbulb, UtensilsCrossed, ChevronDown, ChevronUp, Globe, Compass } from 'lucide-react';
+import { MapPin, Lightbulb, UtensilsCrossed, ChevronDown, ChevronUp, Globe, Compass, Landmark, Leaf } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 type Category = 'all' | 'buddhist' | 'heritage' | 'cultural';
@@ -358,11 +359,11 @@ const destinations: Destination[] = [
   },
 ];
 
-const categoryLabels: { id: Category | 'all'; label: string; icon: string }[] = [
-  { id: 'all', label: 'All Destinations', icon: '🌏' },
-  { id: 'buddhist', label: 'Buddhist Circuit', icon: '☸️' },
-  { id: 'heritage', label: 'Heritage & History', icon: '🏛️' },
-  { id: 'cultural', label: 'Culture & Nature', icon: '🎭' },
+const categoryLabels: { id: Category | 'all'; label: string; icon: ReactNode }[] = [
+  { id: 'all', label: 'All Destinations', icon: <Globe size={15} /> },
+  { id: 'buddhist', label: 'Buddhist Circuit', icon: <Compass size={15} /> },
+  { id: 'heritage', label: 'Heritage & History', icon: <Landmark size={15} /> },
+  { id: 'cultural', label: 'Culture & Nature', icon: <Leaf size={15} /> },
 ];
 
 function CuisineCard({ item }: { item: { name: string; desc: string }; key?: any }) {
@@ -551,7 +552,7 @@ export default function Destinations() {
                 : 'bg-surface-container text-on-surface hover:bg-surface-container-high border border-outline-variant/20'
                 }`}
             >
-              <span>{cat.icon}</span>
+              <span className="opacity-90">{cat.icon}</span>
               {cat.label}
             </button>
           ))}
