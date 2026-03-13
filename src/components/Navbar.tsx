@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { AnimatePresence, motion } from 'motion/react';
+import { House, Map, Compass, MessageSquare, Phone, Info } from 'lucide-react';
 
 const languages = [
   { code: 'en',    name: 'English',          flag: '🇬🇧' },
@@ -28,7 +29,6 @@ export default function Navbar() {
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
   const langRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -37,7 +37,7 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  useEffect(() => { setMobileOpen(false); setLangOpen(false); }, [location]);
+  useEffect(() => { setLangOpen(false); }, [location]);
 
   useEffect(() => {
     const onClickOutside = (e: MouseEvent) => {
@@ -46,11 +46,6 @@ export default function Navbar() {
     document.addEventListener('mousedown', onClickOutside);
     return () => document.removeEventListener('mousedown', onClickOutside);
   }, []);
-
-  useEffect(() => {
-    document.body.style.overflow = mobileOpen ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
-  }, [mobileOpen]);
 
   const currentLang = languages.find(l => l.code === i18n.language) ?? languages[0];
 
@@ -65,6 +60,15 @@ export default function Navbar() {
     { path: '/about',        label: t('nav.about') },
     { path: '/testimonials', label: t('nav.testimonials') },
     { path: '/contact',      label: t('nav.contact') },
+  ];
+
+  const bottomNavItems = [
+    { path: '/', label: t('nav.home'), icon: House },
+    { path: '/tours', label: t('nav.tours'), icon: Compass },
+    { path: '/destinations', label: t('nav.destinations'), icon: Map },
+    { path: '/about', label: t('nav.about'), icon: Info },
+    { path: '/testimonials', label: t('nav.testimonials'), icon: MessageSquare },
+    { path: '/contact', label: t('nav.contact'), icon: Phone },
   ];
 
   const isActive = (path: string) =>
@@ -167,11 +171,11 @@ export default function Navbar() {
             })}
           </nav>
 
-          {/* Right: language + Book + hamburger */}
+          {/* Right: language + Book */}
           <div className="flex items-center gap-3 shrink-0">
 
             {/* Language switcher */}
-            <div className="relative hidden md:block" ref={langRef}>
+            <div className="relative" ref={langRef}>
               <button
                 onClick={() => setLangOpen(o => !o)}
                 className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium transition-all"
@@ -183,7 +187,7 @@ export default function Navbar() {
                 }}
               >
                 <span className="text-base">{currentLang.flag}</span>
-                <span className="hidden sm:inline">{currentLang.name}</span>
+                <span className="hidden md:inline">{currentLang.name}</span>
                 <svg
                   className={`w-3 h-3 transition-transform duration-200 ${langOpen ? 'rotate-180' : ''}`}
                   fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}
@@ -241,114 +245,41 @@ export default function Navbar() {
             >
               {t('nav.book')}
             </Link>
-
-            {/* Hamburger */}
-            <button
-              onClick={() => setMobileOpen(o => !o)}
-              aria-label="Toggle navigation"
-              className="lg:hidden flex flex-col justify-center items-center w-9 h-9 gap-[5px] rounded-full"
-              style={{ color: mobileOpen ? '#2b160f' : scrolled ? BROWN.text : isHome ? '#ffffff' : '#2b160f' }}
-            >
-              <span className={`block h-[2px] w-5 bg-current rounded-full transition-all duration-300 origin-center ${mobileOpen ? 'translate-y-[7px] rotate-45' : ''}`} />
-              <span className={`block h-[2px] w-5 bg-current rounded-full transition-all duration-300 ${mobileOpen ? 'opacity-0 scale-x-0' : ''}`} />
-              <span className={`block h-[2px] w-5 bg-current rounded-full transition-all duration-300 origin-center ${mobileOpen ? '-translate-y-[7px] -rotate-45' : ''}`} />
-            </button>
           </div>
         </div>
       </header>
 
-      {/* ── Mobile menu ── */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="lg:hidden fixed inset-0 z-40 flex flex-col pt-16"
-            style={{ background: BROWN.bg }}
-          >
-            <motion.nav
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.05 }}
-              className="flex flex-col items-center justify-center flex-1 gap-2 px-8 py-8"
-            >
-              {navItems.map((item, i) => {
-                const active = isActive(item.path);
-                return (
-                  <motion.div
-                    key={item.path}
-                    initial={{ opacity: 0, y: 16 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.05 + i * 0.06 }}
-                    className="w-full max-w-sm"
-                  >
-                    <Link
-                      to={item.path}
-                      className="flex items-center justify-center w-full py-3 rounded-xl text-lg transition-colors"
-                      style={{
-                        color: active ? BROWN.active : BROWN.textMute,
-                        background: active ? BROWN.hover : 'transparent',
-                        fontWeight: active ? 600 : 400,
-                      }}
-                    >
-                      {item.label}
-                    </Link>
-                  </motion.div>
-                );
-              })}
-
-              {/* Language grid in mobile */}
-              <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.05 + navItems.length * 0.06 }}
-                className="w-full max-w-sm mt-6 pt-6"
-                style={{ borderTop: `1px solid ${BROWN.border}` }}
+      {/* ── Bottom App-like Navigation (mobile only) ── */}
+      <nav
+        className="md:hidden fixed bottom-0 left-0 right-0 z-40 px-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] pt-2"
+        style={{
+          background: 'rgba(255,255,255,0.96)',
+          backdropFilter: 'blur(12px)',
+          borderTop: `1px solid ${BROWN.border}`,
+          boxShadow: '0 -6px 18px rgba(43,22,15,0.09)',
+        }}
+      >
+        <div className="max-w-xl mx-auto grid grid-cols-6 gap-1">
+          {bottomNavItems.map((item) => {
+            const active = isActive(item.path);
+            const Icon = item.icon;
+            return (
+              <Link
+                key={item.path}
+                to={item.path}
+                className="flex flex-col items-center justify-center gap-1 rounded-xl py-2 text-[11px] font-semibold transition-colors"
+                style={{
+                  color: active ? BROWN.active : BROWN.textMute,
+                  background: active ? BROWN.hover : 'transparent',
+                }}
               >
-                <p className="text-xs font-bold tracking-widest uppercase text-center mb-3" style={{ color: BROWN.textMute }}>
-                  Language
-                </p>
-                <div className="grid grid-cols-2 gap-2">
-                  {languages.map(lang => (
-                    <button
-                      key={lang.code}
-                      onClick={() => { i18n.changeLanguage(lang.code); setMobileOpen(false); }}
-                      className="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm transition-colors"
-                      style={{
-                        color: lang.code === i18n.language ? BROWN.active : BROWN.textMute,
-                        background: lang.code === i18n.language ? BROWN.hover : 'transparent',
-                        border: `1px solid ${lang.code === i18n.language ? BROWN.active + '40' : 'transparent'}`,
-                        fontWeight: lang.code === i18n.language ? 600 : 400,
-                      }}
-                    >
-                      <span>{lang.flag}</span>
-                      <span className="truncate">{lang.name}</span>
-                    </button>
-                  ))}
-                </div>
-              </motion.div>
-
-              {/* Book CTA */}
-              <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.05 + (navItems.length + 1) * 0.06 }}
-                className="w-full max-w-sm mt-4"
-              >
-                <Link
-                  to="/contact"
-                  className="flex items-center justify-center w-full py-4 rounded-full font-bold text-white text-base"
-                  style={{ background: 'linear-gradient(135deg, #C8A951, #E8941A)' }}
-                >
-                  {t('nav.book')}
-                </Link>
-              </motion.div>
-            </motion.nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
+                <Icon size={17} />
+                <span className="truncate max-w-full px-1">{item.label}</span>
+              </Link>
+            );
+          })}
+        </div>
+      </nav>
     </>
   );
 }

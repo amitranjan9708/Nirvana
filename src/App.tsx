@@ -25,7 +25,7 @@ export default function App() {
       <ScrollToTop />
       <div className="min-h-screen flex flex-col">
         <Navbar />
-        <main className="flex-grow">
+        <main className="flex-grow pb-24 md:pb-0">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
