@@ -1,0 +1,45 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&family=Manrope:wght@300;400;500;600;700&display=swap');
+
+@theme {
+  --font-headline: "Noto Serif", serif;
+  --font-body: "Manrope", sans-serif;
+
+  --color-surface: #fff8f6;
+  --color-on-surface: #2b160f;
+  --color-primary: #974300;
+  --color-on-primary: #ffffff;
+  --color-secondary: #745853;
+  --color-on-secondary: #ffffff;
+  --color-tertiary: #735c00;
+  --color-on-tertiary: #ffffff;
+  --color-surface-container: #ffe9e2;
+  --color-surface-container-low: #fff1ec;
+  --color-surface-container-high: #ffe2d9;
+  --color-surface-container-highest: #ffdbce;
+  --color-outline: #8a7266;
+  --color-outline-variant: #ddc1b3;
+  --color-primary-fixed: #ffdbc9;
+  --color-tertiary-fixed: #ffe088;
+  --color-inverse-surface: #422b22;
+  --color-inverse-on-surface: #ffede7;
+}
+
+@layer base {
+  body {
+    @apply bg-surface text-on-surface font-body;
+  }
+}
+
+.lotus-gradient {
+  background: linear-gradient(135deg, #974300 0%, #bc5705 100%);
+}
+
+.glass-nav {
+  background: rgba(255, 248, 246, 0.7);
+  backdrop-filter: blur(16px);
+}
+
+.sacred-glow {
+  box-shadow: 0 32px 64px -12px rgba(43, 22, 15, 0.04);
+}
