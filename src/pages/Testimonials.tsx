@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { AnimatePresence, motion } from 'motion/react';
 import { Quote } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { submitReview } from '../lib/bodhiApi';
 
 const testimonials = [
   {
@@ -104,7 +105,9 @@ export default function Testimonials() {
   const tt = (key: string, fallback: string) => t(key, { defaultValue: fallback });
   const isThai = i18n.resolvedLanguage?.startsWith('th');
   const [reviewForm, setReviewForm] = useState({ name: '', country: '', review: '' });
+  const [reviewSubmitting, setReviewSubmitting] = useState(false);
   const [reviewSubmitted, setReviewSubmitted] = useState(false);
+  const [reviewError, setReviewError] = useState<string | null>(null);
   const [galleryImages, setGalleryImages] = useState<{ src: string; alt: string }[]>([]);
   const [galleryLoaded, setGalleryLoaded] = useState(false);
   const [galleryOpen, setGalleryOpen] = useState(false);
@@ -151,10 +154,25 @@ export default function Testimonials() {
     return () => { mounted = false; };
   }, []);
 
-  const handleReviewSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleReviewSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setReviewSubmitted(true);
-    setReviewForm({ name: '', country: '', review: '' });
+    setReviewError(null);
+    setReviewSubmitted(false);
+    setReviewSubmitting(true);
+    try {
+      await submitReview({
+        name: reviewForm.name.trim(),
+        country: reviewForm.country.trim(),
+        review_text: reviewForm.review.trim(),
+        rating: 5,
+      });
+      setReviewSubmitted(true);
+      setReviewForm({ name: '', country: '', review: '' });
+    } catch (error) {
+      setReviewError(error instanceof Error ? error.message : 'Could not submit review right now.');
+    } finally {
+      setReviewSubmitting(false);
+    }
   };
 
   return (
@@ -344,6 +362,11 @@ export default function Testimonials() {
               Thank you for your review. We appreciate your feedback.
             </div>
           )}
+          {reviewError && (
+            <div className="mb-5 rounded-xl border border-error/30 bg-error/10 px-4 py-3 text-sm text-error">
+              {reviewError}
+            </div>
+          )}
 
           <form onSubmit={handleReviewSubmit} className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -376,9 +399,10 @@ export default function Testimonials() {
 
             <button
               type="submit"
+              disabled={reviewSubmitting}
               className="lotus-gradient text-white px-7 py-3 rounded-full font-bold text-sm shadow-lg shadow-primary/20 hover:shadow-xl transition-all"
             >
-              Submit Review
+              {reviewSubmitting ? 'Submitting...' : 'Submit Review'}
             </button>
           </form>
         </div>
