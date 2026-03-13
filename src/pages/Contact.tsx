@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { MessageCircle, Mail, MapPin, CheckCircle, Send } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { submitInquiry } from '../lib/bodhiApi';
 
 const tourOptions = [
   'The Great Awakening Circuit (7 Days – $1,499)',
@@ -73,18 +74,33 @@ export default function Contact() {
   const [form, setForm] = useState<FormState>(emptyForm);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    setSubmitError(null);
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
+    try {
+      await submitInquiry({
+        full_name: form.name.trim(),
+        email: form.email.trim(),
+        phone: form.phone.trim() || undefined,
+        country: form.country.trim() || undefined,
+        group_size: form.groupSize || undefined,
+        preferred_month: form.preferredMonth || undefined,
+        tour_interest: form.tourInterest || undefined,
+        message: form.message.trim(),
+      });
       setSubmitted(true);
-    }, 1200);
+    } catch (error) {
+      setSubmitError(error instanceof Error ? error.message : 'Could not submit inquiry right now.');
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -284,6 +300,9 @@ export default function Contact() {
                 </div>
 
                 <div className="pt-4">
+                  {submitError && (
+                    <p className="text-sm text-error mb-3">{submitError}</p>
+                  )}
                   <button
                     type="submit"
                     disabled={loading}
