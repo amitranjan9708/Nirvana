@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { ReactNode } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { MapPin, Lightbulb, UtensilsCrossed, ChevronDown, ChevronUp, Globe, Compass, Landmark, Leaf } from 'lucide-react';
+import { MapPin, Lightbulb, UtensilsCrossed, ChevronDown, ChevronUp, Globe, Compass, Landmark, Leaf, PlayCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 type Category = 'all' | 'buddhist' | 'heritage' | 'cultural';
@@ -59,6 +59,24 @@ const destinations: Destination[] = [
       { name: 'Thandai', desc: 'Chilled milk infused with almonds, rose petals, pepper, cardamom, and fennel. Varanasi\'s celebratory drink.' },
     ],
     activities: ['Dawn Boat Ride', 'Ganga Aarti Ceremony', 'Guided Alley Walk', 'Silk Weaving Tour'],
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=800&q=80',
+    key: 'vaishali',
+    country: 'India',
+    flag: '🇮🇳',
+    category: ['buddhist', 'heritage'],
+    highlight: 'Vaishali Sacred Legacy',
+    title: 'Vaishali (Kolhua) — Buddha Samyak Legacy in Bihar',
+    desc: 'Vaishali is one of the most important Buddhist heritage zones in Bihar and is traditionally associated with the Buddha\'s later teachings. At Kolhua, pilgrims visit the Ashokan lion pillar, early stupa remains, and the Kutagarasala monastic zone linked with rainy-season retreats. The site is also strongly connected with narratives of the Buddha\'s final phase before Kushinagar.',
+    sites: ['Kolhua Ashokan Pillar (single lion capital)', 'Buddha Relic Stupa (Licchavi tradition)', 'Kutagarasala Vihara remains', 'Abhishek Pushkarini (sacred tank)', 'Raja Vishal ka Garh (ancient republic earthworks)', 'Second Buddhist Council association site'],
+    tips: 'Best season: October to March. Visit early morning to avoid heat and crowds. Combine with Patna Museum for relic context and with Nalanda/Rajgir for a complete Magadha circuit.',
+    cuisine: [
+      { name: 'Bihari Litti Chokha', desc: 'The signature Bihar meal of roasted stuffed wheat balls with smoky mashed vegetables; ideal after long site walks.' },
+      { name: 'Sattu Sharbat', desc: 'A cooling roasted-gram drink that is practical for Vaishali\'s warm climate and long outdoor exploration.' },
+      { name: 'Khaja (Bihar sweet)', desc: 'Layered flaky sweet often available at pilgrimage stops and local roadside shops.' },
+    ],
+    activities: ['Samyak Reflection Session', 'Ashokan Pillar Heritage Walk', 'Stupa Circumambulation', 'Dhamma Talk on Late Teachings'],
   },
   {
     img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCQABquklSKh4X0Xoc3P_8Xbkxs4kGypvqOZ2sAaIsUGmrwQXV-oleFvJSSmk0GqadI9zSbQUWIO2LOTR5VopU4-vK2lU0mgQOO8FViVHYPTIcFWgz7sma8PnLaNRMpKlenz-cBWA3m1CRifODmLf0cPsaYfN1PEVOe3zGsU9tzTLocJv8U-bdKNtPYR3z6gbs57PYfYzfIXTEXcT2A6xA7OvQp76JjjJW6YspkN3ePsTN0zMBwIWpdEZ1cQ5lvP7vWsIuyolFQVno',
@@ -340,7 +358,7 @@ const destinations: Destination[] = [
     activities: ['Monastic Chanting Session', 'Tibetan Cooking Class', 'Triund Trekking', 'Kora Walk'],
   },
   {
-    img: 'https://images.unsplash.com/photo-1620138902595-3bc556209865?w=800&q=80',
+    img: 'images/tawang.jpg',
     key: 'tawang',
     country: 'India',
     flag: '🇮🇳',
@@ -386,6 +404,7 @@ function DestinationCard({ dest, index }: { dest: Destination; index: number; ke
     'Core Buddhist Circuit': 'bg-primary/10 text-primary border-primary/20',
     'Extended Buddhist Circuit': 'bg-tertiary/10 text-tertiary border-tertiary/20',
     'Monastic Heritage': 'bg-surface-container-high text-on-surface border-outline-variant/40',
+    'Vaishali Sacred Legacy': 'bg-violet-500/10 text-violet-700 border-violet-500/20',
     'Golden Triangle': 'bg-amber-500/10 text-amber-600 border-amber-500/20',
     'God\'s Own Country': 'bg-emerald-500/10 text-emerald-700 border-emerald-500/20',
     'Sun, Sea & Heritage': 'bg-blue-500/10 text-blue-700 border-blue-500/20',
@@ -559,6 +578,41 @@ export default function Destinations() {
           <span className="flex items-center text-xs text-secondary ml-2">
             {filtered.length} destination{filtered.length !== 1 ? 's' : ''}
           </span>
+        </div>
+      </section>
+
+      {/* Samyak Vaishali Highlight */}
+      <section className="py-16 px-6 bg-surface">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+          <div>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-700 text-xs font-bold tracking-wide uppercase mb-4">
+              <PlayCircle size={14} />
+              Buddha Samyak Highlight
+            </div>
+            <h2 className="font-headline text-3xl lg:text-4xl text-on-surface mb-4">
+              Vaishali, Bihar: Why It Matters
+            </h2>
+            <p className="text-secondary leading-relaxed mb-5">
+              Vaishali is a major Buddhist memory landscape where core traditions connect the Buddha&apos;s later teachings, relic heritage, and the early Sangha&apos;s institutional history. This stop adds depth to Bihar pilgrimages by linking practice, archaeology, and living devotion.
+            </p>
+            <ul className="space-y-2 text-sm text-on-surface">
+              <li className="flex items-start gap-2"><span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-violet-600 shrink-0" />Traditionally associated with the Buddha&apos;s final phase teachings before Kushinagar.</li>
+              <li className="flex items-start gap-2"><span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-violet-600 shrink-0" />Home to the Kolhua Ashokan pillar and early stupa remains tied to relic veneration.</li>
+              <li className="flex items-start gap-2"><span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-violet-600 shrink-0" />Linked in Buddhist sources with major Sangha developments, including Second Council traditions.</li>
+              <li className="flex items-start gap-2"><span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-violet-600 shrink-0" />Excellent with Nalanda and Rajgir for a complete Magadha heritage route.</li>
+            </ul>
+          </div>
+          <div className="rounded-2xl overflow-hidden border border-outline-variant/20 bg-surface-container-lowest sacred-glow">
+            <video
+              className="w-full h-full object-cover aspect-video"
+              src="/main2.mp4"
+              controls
+              muted
+              loop
+              playsInline
+              preload="metadata"
+            />
+          </div>
         </div>
       </section>
 
