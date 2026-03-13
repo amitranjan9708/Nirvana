@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { ArrowRight, BadgeCheck, Users, Flower, MessageSquare } from 'lucide-react';
+import { ArrowRight, BadgeCheck, Users, Flower, MessageSquare, Star, Shield, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function Home() {
@@ -85,7 +85,8 @@ export default function Home() {
           >
             <span>✦ 10+ Years Experience</span>
             <span>✦ 3,200+ Pilgrims Guided</span>
-            <span>✦ Small Groups (max 12)</span>
+            <span>✦ Solo to 500+ Pilgrims</span>
+            <span>✦ Luxury Fleet Available</span>
           </motion.div>
         </div>
 
@@ -150,15 +151,18 @@ export default function Home() {
       <section className="py-32 px-6">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16">
           <div className="flex-1 space-y-8">
-            <h2 className="font-headline text-4xl md:text-5xl">Why Choose Us</h2>
-            <div className="space-y-12">
+            <div>
+              <span className="text-tertiary font-bold tracking-[0.2em] uppercase text-xs mb-3 block">The Nirvana Difference</span>
+              <h2 className="font-headline text-4xl md:text-5xl">Why Pilgrims Choose Us</h2>
+            </div>
+            <div className="space-y-10">
               <div className="flex gap-6">
                 <div className="flex-shrink-0 w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-primary">
                   <BadgeCheck size={24} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-xl mb-2">10+ Years Experience</h4>
-                  <p className="text-secondary leading-relaxed">A decade of perfecting the pilgrimage experience for spiritual seekers from across the globe.</p>
+                  <h4 className="font-bold text-xl mb-2">10+ Years, 42 Countries</h4>
+                  <p className="text-secondary leading-relaxed">A decade of perfecting the pilgrimage experience for solo travellers, families, monasteries, and corporate retreats from across the globe.</p>
                 </div>
               </div>
               <div className="flex gap-6">
@@ -166,8 +170,17 @@ export default function Home() {
                   <Users size={24} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-xl mb-2">Local Expertise</h4>
-                  <p className="text-secondary leading-relaxed">Our guides are born and raised in Bodh Gaya, offering stories and access you won't find anywhere else.</p>
+                  <h4 className="font-bold text-xl mb-2">Any Group Size — No Limits</h4>
+                  <p className="text-secondary leading-relaxed">From a solo seeker to a 500-person institutional delegation — we plan and execute flawlessly at every scale. Your group size is never a constraint.</p>
+                </div>
+              </div>
+              <div className="flex gap-6">
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-primary">
+                  <Star size={24} />
+                </div>
+                <div>
+                  <h4 className="font-bold text-xl mb-2">Comfort & Luxury, Not Compromise</h4>
+                  <p className="text-secondary leading-relaxed">Premium air-conditioned vehicles, hand-picked monasteries and hotels, and curated itineraries that balance spiritual depth with genuine comfort.</p>
                 </div>
               </div>
               <div className="flex gap-6">
@@ -175,20 +188,133 @@ export default function Home() {
                   <Flower size={24} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-xl mb-2">Soulful Itineraries</h4>
-                  <p className="text-secondary leading-relaxed">We balance sightseeing with meditation sessions, ensuring a true spiritual transformation.</p>
+                  <h4 className="font-bold text-xl mb-2">Born-Local Guides</h4>
+                  <p className="text-secondary leading-relaxed">Our guides are lifelong residents of Bodh Gaya — offering stories, access, and meaning that no outsider can replicate.</p>
                 </div>
               </div>
             </div>
           </div>
           <div className="flex-1 relative">
             <div className="absolute -inset-4 border border-outline-variant/30 rounded-xl transform rotate-3"></div>
-            <img 
-              className="relative z-10 rounded-xl sacred-glow" 
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1d9tpNIrWRolZM-CTxNWdbFTiQzZez_ABmfqiWLGqBmtZImA_ffi2zbC94IfJV44cPHJvge-lDCbLcSIjGpPla-ZKZcta4iutHkKH5hfuJLiafauZUbNQj9Jsj8Xsgr1mNMc8WQXCWzMW7jlblcSJrdUfhVAV5ZGElEd15HC-b3bCd3t074NkNjZIhCQv48fx8jU-jDEyXD-nMozKjqIetO6dzDUsWuJzpbEtDcpJuPYkTYPD8a63VtMtWZc1UP1IZgAdhTVrxZg" 
-              alt="Local monk teaching travelers near a temple"
+            <img
+              className="relative z-10 rounded-xl sacred-glow"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1d9tpNIrWRolZM-CTxNWdbFTiQzZez_ABmfqiWLGqBmtZImA_ffi2zbC94IfJV44cPHJvge-lDCbLcSIjGpPla-ZKZcta4iutHkKH5hfuJLiafauZUbNQj9Jsj8Xsgr1mNMc8WQXCWzMW7jlblcSJrdUfhVAV5ZGElEd15HC-b3bCd3t074NkNjZIhCQv48fx8jU-jDEyXD-nMozKjqIetO6dzDUsWuJzpbEtDcpJuPYkTYPD8a63VtMtWZc1UP1IZgAdhTVrxZg"
+              alt="Local guide teaching pilgrims near a temple"
               referrerPolicy="no-referrer"
             />
+          </div>
+        </div>
+      </section>
+
+      {/* Fleet & Comfort Section */}
+      <section className="py-24 px-6" style={{ background: '#2e1a10' }}>
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <span className="font-bold tracking-[0.2em] uppercase text-xs mb-3 block" style={{ color: '#E8C96A' }}>
+              Travel in Style
+            </span>
+            <h2 className="font-headline text-4xl md:text-5xl mb-4" style={{ color: '#ffede7' }}>
+              Premium Fleet for Every Group
+            </h2>
+            <p className="max-w-2xl mx-auto leading-relaxed text-lg" style={{ color: 'rgba(255,237,231,0.65)' }}>
+              Air-conditioned, GPS-tracked, and immaculately maintained — we match the right vehicle to your group size so every kilometre of your pilgrimage is comfortable.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-14">
+            {[
+              {
+                emoji: '🚗',
+                name: 'Toyota Innova Crysta',
+                capacity: '4 – 7 Passengers',
+                tag: 'Private & Intimate',
+                tagColor: '#E8C96A',
+                features: ['Leather seating', 'Full AC', 'Ample boot space', 'Perfect for families'],
+                ideal: 'Solo · Couple · Family',
+              },
+              {
+                emoji: '🚐',
+                name: 'Tempo Traveller',
+                capacity: '9 – 16 Passengers',
+                tag: 'Most Popular',
+                tagColor: '#C8A951',
+                features: ['Pushback seats', 'Full AC', 'Overhead storage', 'Large windows'],
+                ideal: 'Small Groups · Friends',
+              },
+              {
+                emoji: '🚌',
+                name: 'Luxury Mini Coach',
+                capacity: '20 – 35 Passengers',
+                tag: 'Group Favourite',
+                tagColor: '#b08d3a',
+                features: ['Reclining seats', 'Dual AC', 'PA system', 'Onboard storage'],
+                ideal: 'Tour Groups · Clubs',
+              },
+              {
+                emoji: '🏨',
+                name: 'Deluxe Coach Bus',
+                capacity: '40 – 60 Passengers',
+                tag: 'Large Delegations',
+                tagColor: '#8a6e2a',
+                features: ['Premium recliners', 'Triple AC', 'Luggage bay', 'PA & music system'],
+                ideal: 'Monasteries · Organisations',
+              },
+            ].map((v, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="rounded-2xl p-7 flex flex-col"
+                style={{ background: 'rgba(255,237,231,0.05)', border: '1px solid rgba(255,237,231,0.10)' }}
+              >
+                {/* Vehicle icon */}
+                <div className="text-5xl mb-5">{v.emoji}</div>
+
+                {/* Tag */}
+                <span className="text-xs font-bold tracking-widest uppercase mb-3" style={{ color: v.tagColor }}>
+                  {v.tag}
+                </span>
+
+                {/* Name & capacity */}
+                <h3 className="font-headline text-xl mb-1" style={{ color: '#ffede7' }}>{v.name}</h3>
+                <p className="text-sm font-semibold mb-5" style={{ color: '#E8C96A' }}>{v.capacity}</p>
+
+                {/* Features */}
+                <ul className="space-y-2 flex-grow mb-6">
+                  {v.features.map(f => (
+                    <li key={f} className="flex items-center gap-2 text-sm" style={{ color: 'rgba(255,237,231,0.65)' }}>
+                      <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: '#E8C96A' }} />
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+
+                {/* Ideal for */}
+                <div className="pt-4" style={{ borderTop: '1px solid rgba(255,237,231,0.10)' }}>
+                  <p className="text-xs font-bold tracking-widest uppercase mb-1" style={{ color: 'rgba(255,237,231,0.40)' }}>Ideal for</p>
+                  <p className="text-sm font-medium" style={{ color: 'rgba(255,237,231,0.80)' }}>{v.ideal}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Comfort assurance strip */}
+          <div className="rounded-2xl p-8 grid grid-cols-1 md:grid-cols-3 gap-6 text-center"
+            style={{ background: 'rgba(255,237,231,0.04)', border: '1px solid rgba(255,237,231,0.08)' }}
+          >
+            {[
+              { icon: <Shield size={28} />, title: 'GPS-Tracked & Insured', desc: 'Every vehicle carries full passenger insurance and is tracked 24/7 for your safety.' },
+              { icon: <Sparkles size={28} />, title: 'Immaculately Maintained', desc: 'Regular servicing, deep cleaning before each journey, and experienced drivers with clean records.' },
+              { icon: <Star size={28} />, title: 'No Hidden Charges', desc: 'What we quote is what you pay — fuel, tolls, parking, and driver allowances all included.' },
+            ].map((item, i) => (
+              <div key={i} className="flex flex-col items-center gap-3">
+                <div style={{ color: '#E8C96A' }}>{item.icon}</div>
+                <h4 className="font-bold text-base" style={{ color: '#ffede7' }}>{item.title}</h4>
+                <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,237,231,0.55)' }}>{item.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

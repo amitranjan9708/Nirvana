@@ -398,8 +398,9 @@ export default function Tours() {
               Six carefully curated pilgrimages guiding you through the footsteps of the Buddha — from a single sacred day to a full 14-day circuit across India and Nepal.
             </p>
             <div className="flex items-center gap-8 text-sm text-secondary">
-              <span className="flex items-center gap-2"><Users size={16} className="text-primary" /> Small groups (max 12)</span>
+              <span className="flex items-center gap-2"><Users size={16} className="text-primary" /> Solo to 500+ pilgrims</span>
               <span className="flex items-center gap-2"><CheckCircle size={16} className="text-primary" /> Local expert guides</span>
+              <span className="flex items-center gap-2"><CheckCircle size={16} className="text-primary" /> Premium fleet included</span>
             </div>
           </div>
         </div>

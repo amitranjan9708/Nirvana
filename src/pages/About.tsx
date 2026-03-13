@@ -112,8 +112,8 @@ export default function About() {
             {/* Value 2 */}
             <div className="bg-primary text-on-primary p-8 rounded-xl flex flex-col justify-center">
               <Users className="mb-4" size={32} />
-              <h4 className="font-headline text-2xl mb-2">Radical Inclusivity</h4>
-              <p className="text-sm opacity-90">Welcoming practitioners of all traditions and stages — Buddhist, Hindu, secular, or simply curious.</p>
+              <h4 className="font-headline text-2xl mb-2">Any Group, Any Scale</h4>
+              <p className="text-sm opacity-90">Solo seekers, family retreats, monastery delegations, and 500-person institutional groups — we serve every scale with the same care.</p>
             </div>
             {/* Value 3 */}
             <div className="md:col-span-2 bg-surface-container-low p-8 rounded-xl flex flex-col md:flex-row gap-8 items-center">
@@ -248,7 +248,7 @@ export default function About() {
               { value: '10+', label: 'Years of Operation' },
               { value: '3,200+', label: 'Pilgrims Guided' },
               { value: '42', label: 'Countries Represented' },
-              { value: '4.9/5', label: 'Average Rating' },
+              { value: '500+', label: 'Largest Group Hosted' },
             ].map(stat => (
               <div key={stat.label}>
                 <p className="font-headline text-4xl md:text-5xl text-primary mb-2">{stat.value}</p>
