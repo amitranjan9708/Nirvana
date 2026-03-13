@@ -153,7 +153,7 @@ export default function Home() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="mt-16 flex flex-wrap items-center justify-center gap-8 text-white/60 text-sm"
+            className="hero-trust-default mt-16 flex flex-wrap items-center justify-center gap-8 text-white/60 text-sm"
           >
             <span>{t('home.trustYears')}</span>
             <span>{t('home.trustPilgrims')}</span>

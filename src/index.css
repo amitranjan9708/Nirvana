@@ -94,6 +94,13 @@
   font-weight: 700;
 }
 
+/* Keep hero trust indicators in original body style */
+.hero-literata .hero-trust-default,
+.hero-literata .hero-trust-default * {
+  font-family: "Manrope", sans-serif !important;
+  font-weight: 500;
+}
+
 .lotus-gradient {
   background: linear-gradient(135deg, #974300 0%, #bc5705 100%);
 }
