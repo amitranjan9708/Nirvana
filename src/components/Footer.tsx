@@ -13,7 +13,7 @@ export default function Footer() {
           <div className="col-span-1 md:col-span-2 space-y-6">
             <div className="flex items-center gap-3">
               <Compass className="text-primary-fixed fill-primary-fixed" size={28} />
-              <span className="font-headline text-2xl font-bold tracking-tight">Nirvana Travels</span>
+              <span className="font-headline text-2xl font-bold tracking-tight">Bodhi Holy Tours</span>
             </div>
             <p className="text-inverse-on-surface/60 max-w-sm leading-relaxed">
               {t('home.heroSubtitle')}
