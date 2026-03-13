@@ -77,6 +77,7 @@ export default function Home() {
   };
   const tt = (key: string, fallback: string) =>
     t(key, { defaultValue: isThai ? (thHome[key] ?? fallback) : fallback });
+
   return (
     <motion.div
       initial={{ opacity: 0 }}

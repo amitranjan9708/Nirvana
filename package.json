@@ -4,8 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --port=3000 --host=0.0.0.0",
-    "build": "vite build",
+    "gallery:manifest": "node scripts/generate-gallery-manifest.mjs",
+    "dev": "npm run gallery:manifest && vite --port=3000 --host=0.0.0.0",
+    "build": "npm run gallery:manifest && vite build",
     "preview": "vite preview",
     "clean": "rm -rf dist",
     "lint": "tsc --noEmit"

@@ -1,5 +1,7 @@
+import { useEffect, useState } from 'react';
+import type { FormEvent } from 'react';
 import { useTranslation } from 'react-i18next';
-import { motion } from 'motion/react';
+import { AnimatePresence, motion } from 'motion/react';
 import { Quote } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -101,6 +103,12 @@ export default function Testimonials() {
   const { t, i18n } = useTranslation();
   const tt = (key: string, fallback: string) => t(key, { defaultValue: fallback });
   const isThai = i18n.resolvedLanguage?.startsWith('th');
+  const [reviewForm, setReviewForm] = useState({ name: '', country: '', review: '' });
+  const [reviewSubmitted, setReviewSubmitted] = useState(false);
+  const [galleryImages, setGalleryImages] = useState<{ src: string; alt: string }[]>([]);
+  const [galleryLoaded, setGalleryLoaded] = useState(false);
+  const [galleryOpen, setGalleryOpen] = useState(false);
+  const [showAllGalleryPhotos, setShowAllGalleryPhotos] = useState(false);
 
   const thaiTestimonials = [
     { name: 'สมชาย พ.', country: '🇹🇭 ไทย', rating: 5, text: 'ประสบการณ์แสวงบุญที่ลึกซึ้ง ไกด์อธิบายประวัติและความหมายของทุกสถานที่ได้ละเอียดมาก', tour: 'รีทรีตพุทธคยาเชิงลึก' },
@@ -118,6 +126,36 @@ export default function Testimonials() {
   ];
 
   const activeTestimonials = isThai ? thaiTestimonials : testimonials;
+  const visibleGalleryImages = showAllGalleryPhotos
+    ? galleryImages
+    : galleryImages.slice(0, 9);
+
+  useEffect(() => {
+    let mounted = true;
+
+    const loadGallery = async () => {
+      try {
+        const res = await fetch('/gallery/gallery.json', { cache: 'no-store' });
+        if (!res.ok) throw new Error(`Failed to load gallery manifest: ${res.status}`);
+        const data = (await res.json()) as { src: string; alt: string }[];
+        if (mounted) setGalleryImages(Array.isArray(data) ? data : []);
+      } catch (error) {
+        console.error(error);
+        if (mounted) setGalleryImages([]);
+      } finally {
+        if (mounted) setGalleryLoaded(true);
+      }
+    };
+
+    loadGallery();
+    return () => { mounted = false; };
+  }, []);
+
+  const handleReviewSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setReviewSubmitted(true);
+    setReviewForm({ name: '', country: '', review: '' });
+  };
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="pt-16">
@@ -137,6 +175,98 @@ export default function Testimonials() {
           </p>
         </div>
       </section>
+
+    
+        
+         
+
+          <div className="flex items-center justify-center mb-8">
+            <button
+              onClick={() => {
+                setGalleryOpen((open) => !open);
+                if (galleryOpen) setShowAllGalleryPhotos(false);
+              }}
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-outline-variant/30 bg-surface text-on-surface font-bold text-sm hover:border-primary hover:text-primary transition-all"
+            >
+              {galleryOpen ? 'Hide Traveller Gallery' : 'Open Traveller Gallery'}
+              {galleryImages.length > 0 ? `(${galleryImages.length})` : ''}
+            </button>
+          </div>
+
+          {!galleryOpen && galleryImages.length > 0 && (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+              {galleryImages.slice(0, 4).map((img, idx) => (
+                <figure
+                  key={`preview-${img.src}-${idx}`}
+                  className="overflow-hidden rounded-xl bg-surface border border-outline-variant/20"
+                >
+                  <img
+                    src={img.src}
+                    alt={img.alt}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-40 md:h-44 object-cover"
+                  />
+                </figure>
+              ))}
+            </div>
+          )}
+
+          <AnimatePresence initial={false}>
+            {galleryOpen && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.3, ease: 'easeInOut' }}
+                className="overflow-hidden"
+              >
+                {!galleryLoaded && (
+                  <p className="text-center text-secondary">Loading gallery...</p>
+                )}
+
+                {galleryLoaded && galleryImages.length === 0 && (
+                  <p className="text-center text-secondary">
+                    No photos found in <code>/public/gallery</code> yet.
+                  </p>
+                )}
+
+                {galleryImages.length > 0 && (
+                  <>
+                    <div className="columns-1 sm:columns-2 lg:columns-3 gap-5 [column-fill:_balance]">
+                      {visibleGalleryImages.map((img, idx) => (
+                        <figure
+                          key={`${img.src}-${idx}`}
+                          className="mb-5 break-inside-avoid overflow-hidden rounded-2xl bg-surface shadow-sm border border-outline-variant/20"
+                        >
+                          <img
+                            src={img.src}
+                            alt={img.alt}
+                            loading="lazy"
+                            decoding="async"
+                            className="w-full h-auto block"
+                          />
+                        </figure>
+                      ))}
+                    </div>
+
+                    {galleryImages.length > 9 && (
+                      <div className="text-center mt-6">
+                        <button
+                          onClick={() => setShowAllGalleryPhotos((v) => !v)}
+                          className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-on-primary font-bold text-sm hover:bg-primary/90 transition-all"
+                        >
+                          {showAllGalleryPhotos ? 'Show Fewer Photos' : `Show All Photos (${galleryImages.length})`}
+                        </button>
+                      </div>
+                    )}
+                  </>
+                )}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        
+      
 
       {/* Stats Strip */}
       <section className="bg-surface border-b border-outline-variant/20">
@@ -198,6 +328,59 @@ export default function Testimonials() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Write Your Review */}
+      <section className="py-12 px-6 bg-surface">
+        <div className="max-w-3xl mx-auto bg-surface-container-low rounded-2xl border border-outline-variant/20 p-6 md:p-8">
+          <h3 className="font-headline text-3xl text-on-surface mb-2">Write Your Review</h3>
+          <p className="text-secondary mb-6">
+            Share your journey experience with future pilgrims.
+          </p>
+
+          {reviewSubmitted && (
+            <div className="mb-5 rounded-xl border border-primary/25 bg-primary/10 px-4 py-3 text-sm text-on-surface">
+              Thank you for your review. We appreciate your feedback.
+            </div>
+          )}
+
+          <form onSubmit={handleReviewSubmit} className="space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <input
+                type="text"
+                placeholder="Your Name"
+                value={reviewForm.name}
+                onChange={(e) => setReviewForm((p) => ({ ...p, name: e.target.value }))}
+                required
+                className="w-full rounded-xl border border-outline-variant/30 bg-surface px-4 py-3 text-on-surface placeholder:text-secondary/70 focus:outline-none focus:border-primary"
+              />
+              <input
+                type="text"
+                placeholder="Country"
+                value={reviewForm.country}
+                onChange={(e) => setReviewForm((p) => ({ ...p, country: e.target.value }))}
+                required
+                className="w-full rounded-xl border border-outline-variant/30 bg-surface px-4 py-3 text-on-surface placeholder:text-secondary/70 focus:outline-none focus:border-primary"
+              />
+            </div>
+
+            <textarea
+              placeholder="Write your review..."
+              rows={5}
+              value={reviewForm.review}
+              onChange={(e) => setReviewForm((p) => ({ ...p, review: e.target.value }))}
+              required
+              className="w-full rounded-xl border border-outline-variant/30 bg-surface px-4 py-3 text-on-surface placeholder:text-secondary/70 focus:outline-none focus:border-primary resize-y"
+            />
+
+            <button
+              type="submit"
+              className="lotus-gradient text-white px-7 py-3 rounded-full font-bold text-sm shadow-lg shadow-primary/20 hover:shadow-xl transition-all"
+            >
+              Submit Review
+            </button>
+          </form>
         </div>
       </section>
 
