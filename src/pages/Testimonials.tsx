@@ -98,7 +98,26 @@ const stats = [
 ];
 
 export default function Testimonials() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const tt = (key: string, fallback: string) => t(key, { defaultValue: fallback });
+  const isThai = i18n.resolvedLanguage?.startsWith('th');
+
+  const thaiTestimonials = [
+    { name: 'สมชาย พ.', country: '🇹🇭 ไทย', rating: 5, text: 'ประสบการณ์แสวงบุญที่ลึกซึ้ง ไกด์อธิบายประวัติและความหมายของทุกสถานที่ได้ละเอียดมาก', tour: 'รีทรีตพุทธคยาเชิงลึก' },
+    { name: 'เหงียน ที เอ็ม.', country: '🇻🇳 เวียดนาม', rating: 5, text: 'เดินทางจากโฮจิมินห์มาแล้วคุ้มค่ามาก โปรแกรมเป็นระบบและเคารพประเพณีพุทธอย่างแท้จริง', tour: 'เส้นทางตื่นรู้อันยิ่งใหญ่' },
+    { name: 'อาหมัด อาร์.', country: '🇲🇾 มาเลเซีย', rating: 5, text: 'บริการยอดเยี่ยม กลุ่มไม่แออัด และดูแลอย่างมืออาชีพตลอดทริป', tour: 'ทัวร์ศักดิ์สิทธิ์พุทธคยา 1 วัน' },
+    { name: 'เดวี เอส.', country: '🇮🇩 อินโดนีเซีย', rating: 5, text: 'ทุกอย่างจัดการดีมาก โดยเฉพาะสมาธิยามเช้าที่วัดมหาโพธิ์ เป็นช่วงเวลาที่ประทับใจที่สุด', tour: 'รีทรีตพุทธคยาเชิงลึก' },
+    { name: 'ประกิจ ว.', country: '🇹🇭 ไทย', rating: 5, text: 'คณะของเราจากกรุงเทพฯ 8 คน ได้รับการดูแลครบทั้งรถ ที่พัก อาหาร และกิจกรรมทางจิตวิญญาณ', tour: 'เส้นทางตื่นรู้อันยิ่งใหญ่' },
+    { name: 'หลินห์ ที.', country: '🇻🇳 เวียดนาม', rating: 5, text: 'เคยมาพุทธคยามาก่อน แต่ครั้งนี้ได้ความรู้เชิงลึกและความหมายมากกว่ามาก', tour: 'ทัวร์ศักดิ์สิทธิ์พุทธคยา 1 วัน' },
+    { name: 'เว่ย เฉิน แอล.', country: '🇨🇳 จีน', rating: 5, text: 'การวางแผนเส้นทาง 7 วันทำได้ยอดเยี่ยม ครอบคลุมสถานที่สำคัญทั้งหมดอย่างลงตัว', tour: 'เส้นทางตื่นรู้อันยิ่งใหญ่' },
+    { name: 'ซิติ เอ.', country: '🇲🇾 มาเลเซีย', rating: 5, text: 'จังหวะการเดินทางดีมาก มีเวลาทำสมาธิและไตร่ตรองอย่างเพียงพอ', tour: 'รีทรีตพุทธคยาเชิงลึก' },
+    { name: 'บูดี พ.', country: '🇮🇩 อินโดนีเซีย', rating: 5, text: 'การเดินทางจากจาการ์ตาง่ายมากเพราะทีมช่วยจัดการทุกอย่างให้ครบ', tour: 'รีทรีตพุทธคยาเชิงลึก' },
+    { name: 'เหมย หลิน ซี.', country: '🇹🇼 ไต้หวัน', rating: 5, text: 'ทริปจัดอย่างสวยงามและใส่ใจรายละเอียด ทำให้การแสวงบุญมีความหมายมาก', tour: 'แกรนด์โลตัสเซอร์กิต' },
+    { name: 'ดร. เอเลนา วี.', country: '🇩🇪 เยอรมนี', rating: 5, text: 'ความรู้ของไกด์เรื่องประวัติศาสตร์นาลันทาลึกมาก ระดับงานวิชาการจริง', tour: 'เส้นทางมรดกสงฆ์' },
+    { name: 'ไห่ ดี.', country: '🇻🇳 เวียดนาม', rating: 5, text: 'เหมาะมากสำหรับคณะพุทธจากฮานอย ทุกอย่างเป็นระเบียบและใส่ใจผู้เดินทาง', tour: 'รีทรีตพาราณสีและสารนาถ' },
+  ];
+
+  const activeTestimonials = isThai ? thaiTestimonials : testimonials;
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="pt-16">
@@ -107,7 +126,7 @@ export default function Testimonials() {
       <section className="py-20 px-6 bg-surface-container-low">
         <div className="max-w-7xl mx-auto text-center">
           <span className="text-tertiary font-bold tracking-[0.2em] uppercase text-xs mb-4 block">
-            Pilgrims' Words
+            {t('testimonialsPage.pageTitle')}
           </span>
           <h1 className="font-headline text-5xl lg:text-6xl text-on-surface leading-tight mb-6">
             {t('testimonialsPage.pageTitle')}
@@ -135,7 +154,7 @@ export default function Testimonials() {
       <section className="py-20 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {testimonials.map((item, i) => (
+            {activeTestimonials.map((item, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 24 }}
@@ -150,8 +169,8 @@ export default function Testimonials() {
                     {item.name[0]}
                   </div>
                   <div>
-                    <p className="font-bold text-on-surface">{item.name}</p>
-                    <p className="text-secondary text-sm">{item.country}</p>
+                  <p className="font-bold text-on-surface">{tt(`testimonials.items.${i}.name`, item.name)}</p>
+                  <p className="text-secondary text-sm">{tt(`testimonials.items.${i}.country`, item.country)}</p>
                   </div>
                 </div>
 
@@ -167,14 +186,14 @@ export default function Testimonials() {
                 {/* Quote */}
                 <Quote className="text-primary-fixed mb-3 shrink-0" size={22} />
                 <p className="text-on-surface-variant leading-relaxed text-sm italic flex-grow">
-                  "{item.text}"
+                  "{tt(`testimonials.items.${i}.text`, item.text)}"
                 </p>
 
                 {/* Tour tag */}
                 <div className="mt-6 pt-5 border-t border-outline-variant/15 flex items-center gap-2 text-xs text-secondary font-medium">
                   <span className="text-base">🏷️</span>
                   <span className="font-semibold text-on-surface">{t('testimonialsPage.tourLabel')}:</span>
-                  <span>{item.tour}</span>
+                  <span>{tt(`testimonials.items.${i}.tour`, item.tour)}</span>
                 </div>
               </motion.div>
             ))}
@@ -185,7 +204,7 @@ export default function Testimonials() {
       {/* CTA */}
       <section className="py-20 px-6 bg-surface-container text-center">
         <p className="font-headline text-3xl md:text-4xl text-on-surface mb-4">
-          Ready to write your own story?
+          {t('ui.writeYourOwnStory')}
         </p>
         <p className="text-secondary mb-8 max-w-lg mx-auto">
           Join thousands of pilgrims who have walked these sacred paths with Nirvana Travels.
@@ -195,7 +214,7 @@ export default function Testimonials() {
             to="/tours"
             className="lotus-gradient text-white px-8 py-4 rounded-full font-bold text-sm shadow-lg shadow-primary/20 hover:shadow-xl transition-all"
           >
-            Browse All Tours
+            {t('ui.browseAllTours')}
           </Link>
           <Link
             to="/contact"

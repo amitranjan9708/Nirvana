@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Calendar, Clock, ChevronDown, ChevronUp, MapPin, CheckCircle, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 interface ItineraryDay {
   day: number;
@@ -243,9 +244,89 @@ const upcomingDepartures: Departure[] = [
   },
 ];
 
+const thaiTourNames: Record<string, string> = {
+  'great-awakening': 'เส้นทางตื่นรู้อันยิ่งใหญ่',
+  'bodh-gaya-immersion': 'รีทรีตพุทธคยาเชิงลึก',
+  'varanasi-sarnath': 'รีทรีตพาราณสีและสารนาถ',
+  'monastic-heritage': 'เส้นทางมรดกสงฆ์',
+  'grand-lotus-circuit': 'แกรนด์โลตัสเซอร์กิต',
+  'sacred-day-tour': 'ทัวร์ศักดิ์สิทธิ์พุทธคยา 1 วัน',
+};
+
+const thaiTourTaglines: Record<string, string> = {
+  'great-awakening': 'ตามรอยพุทธประวัติครบวงจร',
+  'bodh-gaya-immersion': 'สัมผัสหัวใจแห่งการตรัสรู้',
+  'varanasi-sarnath': 'แม่น้ำแห่งชีวิตและธรรมจักรปฐมเทศนา',
+  'monastic-heritage': 'มหาวิทยาลัยโบราณและมรดกพุทธ',
+  'grand-lotus-circuit': 'อินเดีย-เนปาล ครบทุกพุทธสังเวชนียสถาน',
+  'sacred-day-tour': 'หนึ่งวันที่สงบลึก ณ ศูนย์กลางโลกพุทธ',
+};
+
+const thaiBadgeMap: Record<string, string> = {
+  'Most Popular': 'ยอดนิยม',
+  'Best Seller': 'ขายดีที่สุด',
+  'Off the Beaten Path': 'เส้นทางพิเศษ',
+  'Premium': 'พรีเมียม',
+};
+
+function toThaiTours(baseTours: Tour[]): Tour[] {
+  return baseTours.map((tour) => ({
+    ...tour,
+    name: thaiTourNames[tour.id] ?? tour.name,
+    tagline: thaiTourTaglines[tour.id] ?? tour.tagline,
+    badge: tour.badge ? (thaiBadgeMap[tour.badge] ?? tour.badge) : null,
+    description: `โปรแกรม ${thaiTourNames[tour.id] ?? tour.name} ออกแบบโดยทีมท้องถิ่นที่มีประสบการณ์ เน้นความสงบ ความหมายทางธรรม และความสะดวกสบายตลอดการเดินทาง`,
+    destinations: tour.destinations.map((d) => {
+      const map: Record<string, string> = {
+        'Bodh Gaya': 'พุทธคยา',
+        'Varanasi': 'พาราณสี',
+        'Sarnath': 'สารนาถ',
+        'Kushinagar': 'กุสินารา',
+        'Patna': 'ปัฏนา',
+        'Nalanda': 'นาลันทา',
+        'Rajgir': 'ราชคฤห์',
+        'Pawapuri': 'ปาวาปุรี',
+        'Kathmandu': 'กาฐมาณฑุ',
+        'Lumbini': 'ลุมพินี',
+        'Shravasti': 'สาวัตถี',
+      };
+      return map[d] ?? d;
+    }),
+    inclusions: [
+      'รถปรับอากาศมาตรฐานสูง',
+      'ไกด์ผู้เชี่ยวชาญท้องถิ่น',
+      'ค่าธรรมเนียมเข้าชมหลัก',
+      'ดูแลตลอดทริป',
+    ],
+    itinerary: tour.itinerary.map((d) => ({
+      day: d.day,
+      title: `วันที่ ${d.day}: โปรแกรมแสวงบุญ`,
+      desc: 'เยี่ยมชมสถานที่ศักดิ์สิทธิ์สำคัญ ทำสมาธิ น้อมจิตภาวนา และเรียนรู้ประวัติพุทธศาสนากับไกด์ท้องถิ่น โดยจัดเวลาพักอย่างเหมาะสมเพื่อความสบายสูงสุด',
+    })),
+  }));
+}
+
+function toThaiDepartures(base: Departure[]): Departure[] {
+  const monthMap: Record<string, string> = {
+    Jan: 'ม.ค.', Feb: 'ก.พ.', Mar: 'มี.ค.', Apr: 'เม.ย.', May: 'พ.ค.', Jun: 'มิ.ย.',
+    Jul: 'ก.ค.', Aug: 'ส.ค.', Sep: 'ก.ย.', Oct: 'ต.ค.', Nov: 'พ.ย.', Dec: 'ธ.ค.',
+  };
+  return base.map((d) => {
+    const [m, dayRaw, year] = d.date.replace(',', '').split(' ');
+    const day = dayRaw ?? '';
+    return {
+      ...d,
+      tourName: thaiTourNames[d.tourId] ?? d.tourName,
+      date: `${day} ${monthMap[m] ?? m} ${year}`,
+    };
+  });
+}
+
 type FilterType = 'all' | 'day' | 'short' | 'long';
 
 function TourCard({ tour }: { tour: Tour }) {
+  const { t } = useTranslation();
+  const tt = (key: string, fallback: string) => t(key, { defaultValue: fallback });
   const [expanded, setExpanded] = useState(false);
 
   return (
@@ -262,39 +343,39 @@ function TourCard({ tour }: { tour: Tour }) {
         <div className="absolute top-4 left-4 flex gap-2 flex-wrap">
           {tour.badge && (
             <span className={`px-3 py-1 rounded-full text-xs font-bold ${tour.badgeStyle}`}>
-              {tour.badge}
+              {tt(`tours.data.${tour.id}.badge`, tour.badge)}
             </span>
           )}
           <span className="px-3 py-1 rounded-full text-xs font-bold bg-surface/90 text-on-surface flex items-center gap-1">
             {tour.days === 1 ? <Clock size={12} /> : <Calendar size={12} />}
-            {tour.days === 1 ? '1 Day' : `${tour.days} Days`}
+            {tour.days === 1 ? `1 ${t('ui.day')}` : `${tour.days} ${t('ui.days')}`}
           </span>
         </div>
         <div className="absolute bottom-4 left-4 flex gap-1 flex-wrap">
           {tour.destinations.slice(0, 3).map(d => (
             <span key={d} className="flex items-center gap-1 text-xs text-surface/90 font-medium">
               <MapPin size={10} className="text-primary-fixed" />
-              {d}
+              {tt(`tours.data.${tour.id}.destinations.${tour.destinations.indexOf(d)}`, d)}
             </span>
           ))}
           {tour.destinations.length > 3 && (
-            <span className="text-xs text-surface/70">+{tour.destinations.length - 3} more</span>
+            <span className="text-xs text-surface/70">+{tour.destinations.length - 3} {tt('tours.more', 'more')}</span>
           )}
         </div>
       </div>
 
       {/* Content */}
       <div className="p-7 flex flex-col flex-grow">
-        <p className="text-xs font-bold tracking-widest text-tertiary uppercase mb-2">{tour.tagline}</p>
-        <h3 className="font-headline text-2xl text-on-surface mb-3 leading-snug">{tour.name}</h3>
-        <p className="text-on-surface-variant text-sm leading-relaxed mb-5">{tour.description}</p>
+        <p className="text-xs font-bold tracking-widest text-tertiary uppercase mb-2">{tt(`tours.data.${tour.id}.tagline`, tour.tagline)}</p>
+        <h3 className="font-headline text-2xl text-on-surface mb-3 leading-snug">{tt(`tours.data.${tour.id}.name`, tour.name)}</h3>
+        <p className="text-on-surface-variant text-sm leading-relaxed mb-5">{tt(`tours.data.${tour.id}.description`, tour.description)}</p>
 
         {/* Inclusions */}
         <div className="flex flex-wrap gap-2 mb-6">
-          {tour.inclusions.map(inc => (
+          {tour.inclusions.map((inc, idx) => (
             <span key={inc} className="flex items-center gap-1 text-xs text-secondary font-medium bg-surface-container px-3 py-1 rounded-full">
               <CheckCircle size={10} className="text-primary shrink-0" />
-              {inc}
+              {tt(`tours.data.${tour.id}.inclusions.${idx}`, inc)}
             </span>
           ))}
         </div>
@@ -302,7 +383,7 @@ function TourCard({ tour }: { tour: Tour }) {
         {/* Price & CTA */}
         <div className="mt-auto pt-5 border-t border-outline-variant/20 flex items-center justify-between">
           <div>
-            <span className="text-xs text-secondary uppercase tracking-wider block">From</span>
+            <span className="text-xs text-secondary uppercase tracking-wider block">{t('ui.from')}</span>
             <span className="font-headline text-2xl text-primary font-bold">
               ${tour.price.toLocaleString()}
               <span className="text-sm font-normal text-secondary">/person</span>
@@ -312,7 +393,7 @@ function TourCard({ tour }: { tour: Tour }) {
             to="/contact"
             className="lotus-gradient text-white px-6 py-3 rounded-full font-bold text-xs tracking-wide shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/40 transition-all"
           >
-            Book Now
+            {t('nav.book')}
           </Link>
         </div>
 
@@ -322,7 +403,7 @@ function TourCard({ tour }: { tour: Tour }) {
           className="mt-4 flex items-center justify-center gap-2 w-full text-xs font-bold text-secondary hover:text-primary transition-colors py-2 border border-outline-variant/20 rounded-xl hover:border-primary/30"
         >
           {expanded ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
-          {expanded ? 'Hide Itinerary' : `View Day-by-Day Itinerary (${tour.itinerary.length} ${tour.itinerary.length === 1 ? 'Day' : 'Days'})`}
+          {expanded ? t('ui.hideItinerary') : `${t('ui.viewItinerary')} (${tour.itinerary.length} ${tour.itinerary.length === 1 ? t('ui.day') : t('ui.days')})`}
         </button>
       </div>
 
@@ -337,7 +418,7 @@ function TourCard({ tour }: { tour: Tour }) {
             className="overflow-hidden"
           >
             <div className="px-7 pb-7 space-y-5 border-t border-outline-variant/20 pt-6 bg-surface-container-low">
-              <h4 className="font-bold text-xs tracking-widest text-secondary uppercase">Day-by-Day Itinerary</h4>
+              <h4 className="font-bold text-xs tracking-widest text-secondary uppercase">{tt('tours.dayByDay', 'Day-by-Day Itinerary')}</h4>
               {tour.itinerary.map((day, idx) => (
                 <div key={day.day} className="flex gap-4">
                   <div className="flex flex-col items-center shrink-0">
@@ -349,8 +430,8 @@ function TourCard({ tour }: { tour: Tour }) {
                     )}
                   </div>
                   <div className="pb-4">
-                    <h5 className="font-bold text-on-surface text-sm mb-1">{day.title}</h5>
-                    <p className="text-secondary text-sm leading-relaxed">{day.desc}</p>
+                    <h5 className="font-bold text-on-surface text-sm mb-1">{tt(`tours.data.${tour.id}.itinerary.${idx}.title`, day.title)}</h5>
+                    <p className="text-secondary text-sm leading-relaxed">{tt(`tours.data.${tour.id}.itinerary.${idx}.desc`, day.desc)}</p>
                   </div>
                 </div>
               ))}
@@ -363,16 +444,22 @@ function TourCard({ tour }: { tour: Tour }) {
 }
 
 export default function Tours() {
+  const { t, i18n } = useTranslation();
+  const tt = (key: string, fallback: string) => t(key, { defaultValue: fallback });
+  const isThai = i18n.resolvedLanguage?.startsWith('th');
   const [filter, setFilter] = useState<FilterType>('all');
 
+  const activeTours = isThai ? toThaiTours(tours) : tours;
+  const activeDepartures = isThai ? toThaiDepartures(upcomingDepartures) : upcomingDepartures;
+
   const filterOptions: { id: FilterType; label: string }[] = [
-    { id: 'all', label: 'All Tours' },
-    { id: 'day', label: 'Day Tour' },
-    { id: 'short', label: '3–5 Days' },
-    { id: 'long', label: '7–14 Days' },
+    { id: 'all', label: t('ui.allTours') },
+    { id: 'day', label: t('ui.dayTour') },
+    { id: 'short', label: t('ui.shortTours') },
+    { id: 'long', label: t('ui.longTours') },
   ];
 
-  const filteredTours = tours.filter(t => {
+  const filteredTours = activeTours.filter(t => {
     if (filter === 'all') return true;
     if (filter === 'day') return t.days === 1;
     if (filter === 'short') return t.days >= 3 && t.days <= 5;
@@ -390,17 +477,17 @@ export default function Tours() {
       <section className="relative py-24 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="max-w-2xl">
-            <span className="text-tertiary font-bold tracking-[0.2em] uppercase text-xs mb-4 block">The Sacred Path</span>
+            <span className="text-tertiary font-bold tracking-[0.2em] uppercase text-xs mb-4 block">{t('ui.theSacredPath')}</span>
             <h1 className="font-headline text-5xl lg:text-7xl text-on-surface leading-tight mb-6">
-              Embark on a Journey of Enlightenment
+              {t('ui.embarkJourney')}
             </h1>
             <p className="text-secondary text-lg leading-relaxed max-w-lg mb-8">
-              Six carefully curated pilgrimages guiding you through the footsteps of the Buddha — from a single sacred day to a full 14-day circuit across India and Nepal.
+              {tt('tours.hero.subtitle', 'Six carefully curated pilgrimages guiding you through the footsteps of the Buddha — from a single sacred day to a full 14-day circuit across India and Nepal.')}
             </p>
             <div className="flex items-center gap-8 text-sm text-secondary">
-              <span className="flex items-center gap-2"><Users size={16} className="text-primary" /> Solo to 500+ pilgrims</span>
-              <span className="flex items-center gap-2"><CheckCircle size={16} className="text-primary" /> Local expert guides</span>
-              <span className="flex items-center gap-2"><CheckCircle size={16} className="text-primary" /> Premium fleet included</span>
+              <span className="flex items-center gap-2"><Users size={16} className="text-primary" /> {tt('tours.hero.point1', 'Solo to 500+ pilgrims')}</span>
+              <span className="flex items-center gap-2"><CheckCircle size={16} className="text-primary" /> {tt('tours.hero.point2', 'Local expert guides')}</span>
+              <span className="flex items-center gap-2"><CheckCircle size={16} className="text-primary" /> {tt('tours.hero.point3', 'Premium fleet included')}</span>
             </div>
           </div>
         </div>
@@ -417,7 +504,7 @@ export default function Tours() {
       {/* Filter Tabs */}
       <div className="max-w-7xl mx-auto px-6 mb-10">
         <div className="flex items-center gap-3 flex-wrap">
-          <span className="text-xs font-bold tracking-widest text-secondary uppercase mr-2">Filter by:</span>
+          <span className="text-xs font-bold tracking-widest text-secondary uppercase mr-2">{t('ui.filterBy')}</span>
           {filterOptions.map(opt => (
             <button
               key={opt.id}
@@ -432,7 +519,7 @@ export default function Tours() {
             </button>
           ))}
           <span className="ml-auto text-sm text-secondary">
-            {filteredTours.length} tour{filteredTours.length !== 1 ? 's' : ''}
+            {filteredTours.length} {t('ui.allTours').toLowerCase()}
           </span>
         </div>
       </div>
@@ -458,8 +545,8 @@ export default function Tours() {
 
         {filteredTours.length === 0 && (
           <div className="text-center py-20 text-secondary">
-            <p className="font-headline text-2xl mb-2">No tours match this filter.</p>
-            <button onClick={() => setFilter('all')} className="text-primary font-bold hover:underline">Show all tours</button>
+            <p className="font-headline text-2xl mb-2">{t('ui.noToursMatch')}</p>
+            <button onClick={() => setFilter('all')} className="text-primary font-bold hover:underline">{t('ui.showAllTours')}</button>
           </div>
         )}
 
@@ -467,17 +554,17 @@ export default function Tours() {
         <div className="mt-24">
           <div className="flex items-end justify-between mb-10">
             <div>
-              <span className="text-tertiary font-bold tracking-[0.2em] uppercase text-xs mb-2 block">Book Your Place</span>
-              <h2 className="font-headline text-4xl text-on-surface">Upcoming Departures</h2>
+              <span className="text-tertiary font-bold tracking-[0.2em] uppercase text-xs mb-2 block">{t('ui.bookYourPlace')}</span>
+              <h2 className="font-headline text-4xl text-on-surface">{t('ui.upcomingDepartures')}</h2>
               <div className="h-1 w-20 bg-tertiary-container rounded-full mt-3"></div>
             </div>
             <Link to="/contact" className="text-sm font-bold text-primary hover:underline hidden md:block">
-              Request a custom date →
+              {t('ui.requestCustomDate')} →
             </Link>
           </div>
 
           <div className="space-y-4">
-            {upcomingDepartures.map((dep, idx) => (
+            {activeDepartures.map((dep, idx) => (
               <div
                 key={idx}
                 className="group flex flex-col md:flex-row items-center gap-6 p-5 bg-surface-container-lowest rounded-xl border border-transparent hover:border-outline-variant/30 transition-all"
@@ -491,16 +578,16 @@ export default function Tours() {
                   />
                 </div>
                 <div className="flex-grow">
-                  <h4 className="font-headline text-xl text-on-surface mb-0.5">{dep.tourName}</h4>
-                  <p className="text-sm text-on-surface-variant">{dep.days} {dep.days === 1 ? 'Day' : 'Days'} · Guided Pilgrimage</p>
+                  <h4 className="font-headline text-xl text-on-surface mb-0.5">{tt(`tours.departures.${idx}.tourName`, dep.tourName)}</h4>
+                  <p className="text-sm text-on-surface-variant">{dep.days} {dep.days === 1 ? t('ui.day') : t('ui.days')} · {t('ui.guidedPilgrimage')}</p>
                 </div>
                 <div className="flex items-center gap-8 shrink-0">
                   <div className="text-right">
-                    <span className="block text-xs font-bold text-secondary uppercase tracking-widest">Departure</span>
+                    <span className="block text-xs font-bold text-secondary uppercase tracking-widest">{t('ui.departure')}</span>
                     <span className="font-bold text-on-surface text-lg">{dep.date}</span>
                   </div>
                   <div className="text-right">
-                    <span className="block text-xs font-bold text-secondary uppercase tracking-widest">Spots Left</span>
+                    <span className="block text-xs font-bold text-secondary uppercase tracking-widest">{t('ui.spotsLeft')}</span>
                     <span className={`font-bold text-lg ${dep.spotsLeft <= 4 ? 'text-error' : 'text-primary'}`}>
                       {dep.spotsLeft}
                     </span>
@@ -509,7 +596,7 @@ export default function Tours() {
                     to="/contact"
                     className="lotus-gradient text-white px-6 py-3 rounded-full font-bold text-xs tracking-wide shadow-md hover:shadow-lg transition-all whitespace-nowrap"
                   >
-                    Reserve Spot
+                    {t('ui.reserveSpot')}
                   </Link>
                 </div>
               </div>
@@ -517,9 +604,9 @@ export default function Tours() {
           </div>
 
           <div className="mt-8 text-center">
-            <p className="text-secondary text-sm mb-4">Don't see the right date? We offer private departures year-round.</p>
+            <p className="text-secondary text-sm mb-4">{t('ui.privateDepartures')}</p>
             <Link to="/contact" className="inline-flex items-center gap-2 border border-outline-variant text-on-surface px-8 py-3 rounded-full font-bold text-sm hover:border-primary hover:text-primary transition-all">
-              Request a Private Tour Date
+              {t('ui.requestPrivateDate')}
             </Link>
           </div>
         </div>

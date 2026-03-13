@@ -14,6 +14,7 @@ const destinations = [
 
 export default function Destinations() {
   const { t } = useTranslation();
+  const tt = (key: string, fallback: string) => t(key, { defaultValue: fallback });
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="pt-16">
@@ -22,7 +23,7 @@ export default function Destinations() {
       <section className="py-20 px-6 bg-surface-container-low">
         <div className="max-w-7xl mx-auto text-center">
           <span className="text-tertiary font-bold tracking-[0.2em] uppercase text-xs mb-4 block">
-            The Sacred Geography
+            {t('ui.journeysByRegion')}
           </span>
           <h1 className="font-headline text-5xl lg:text-6xl text-on-surface leading-tight mb-6">
             {t('destinations.pageTitle')}
@@ -120,23 +121,23 @@ export default function Destinations() {
       {/* CTA */}
       <section className="py-20 px-6 bg-surface-container text-center">
         <h2 className="font-headline text-3xl md:text-4xl text-on-surface mb-4">
-          Ready to walk these sacred paths?
+          {t('ui.writeYourOwnStory')}
         </h2>
         <p className="text-secondary mb-8 max-w-lg mx-auto">
-          Choose from six curated pilgrimages — or request a private custom tour designed around the destinations that call to you.
+          {tt('destinations.cta.subtitle', 'Choose from six curated pilgrimages — or request a private custom tour designed around the destinations that call to you.')}
         </p>
         <div className="flex flex-wrap justify-center gap-4">
           <Link
             to="/tours"
             className="lotus-gradient text-white px-8 py-4 rounded-full font-bold text-sm tracking-wide shadow-lg shadow-primary/20 hover:shadow-xl transition-all"
           >
-            Browse All Tours
+            {t('ui.browseAllTours')}
           </Link>
           <Link
             to="/contact"
             className="border border-outline-variant text-on-surface px-8 py-4 rounded-full font-bold text-sm hover:border-primary hover:text-primary transition-all"
           >
-            Request Custom Itinerary
+            {tt('destinations.cta.custom', 'Request Custom Itinerary')}
           </Link>
         </div>
       </section>
