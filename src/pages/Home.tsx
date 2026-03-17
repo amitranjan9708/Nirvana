@@ -694,8 +694,7 @@ export default function Home() {
                 <p className="text-primary font-bold tracking-widest text-[10px] uppercase mb-2">Buddhist Pilgrimage</p>
                 <h3 className="font-headline text-2xl mb-2">The Great Awakening</h3>
                 <p className="text-secondary text-sm mb-6 line-clamp-2">A comprehensive journey through the four most sacred sites: Bodh Gaya, Sarnath, Kushinagar, and Varanasi.</p>
-                <div className="flex justify-between items-center pt-6 border-t border-outline-variant/10">
-                  <span className="text-primary font-bold text-xl">$1,499</span>
+                <div className="flex justify-center items-center pt-6 border-t border-outline-variant/10">
                   <Link to="/tours" className="text-primary font-bold text-sm flex items-center gap-1 group/btn">
                     Details
                     <ArrowRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
@@ -721,8 +720,7 @@ export default function Home() {
                 <h3 className="font-headline text-2xl mb-2">Golden Triangle Loop</h3>
                 <p className="text-secondary text-sm mb-2">Delhi · Agra · Jaipur</p>
                 <p className="text-secondary text-sm mb-6 line-clamp-2">Behold the majestic Taj Mahal, Jaipur's Pink Palaces, and the imperial history of Delhi in one iconic journey.</p>
-                <div className="flex justify-between items-center pt-6 border-t border-outline-variant/10">
-                  <span className="text-primary font-bold text-xl">$899</span>
+                <div className="flex justify-center items-center pt-6 border-t border-outline-variant/10">
                   <Link to="/tours" className="text-tertiary font-semibold flex items-center gap-1 group/btn">
                     Details
                     <ArrowRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
@@ -748,8 +746,7 @@ export default function Home() {
                 <h3 className="font-headline text-2xl mb-2">Buddha to the Taj</h3>
                 <p className="text-secondary text-sm mb-2">Mixed · 6 Sacred Cities</p>
                 <p className="text-secondary text-sm mb-6 line-clamp-2">The ultimate fusion: from the Bodhi Tree's silence to the Taj's marble perfection across North India's heartland.</p>
-                <div className="flex justify-between items-center pt-6 border-t border-outline-variant/10">
-                  <span className="text-primary font-bold text-xl">$1,699</span>
+                <div className="flex justify-center items-center pt-6 border-t border-outline-variant/10">
                   <Link to="/tours" className="text-tertiary font-semibold flex items-center gap-1 group/btn">
                     {t('ui.details')}
                     <ArrowRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />

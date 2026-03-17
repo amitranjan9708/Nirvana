@@ -17,7 +17,6 @@ interface Tour {
   name: string;
   tagline: string;
   days: number;
-  price: number;
   badge: string | null;
   badgeStyle: string;
   image: string;
@@ -35,7 +34,6 @@ const tours: Tour[] = [
     name: 'The Great Awakening Circuit',
     tagline: 'Follow the Complete Arc of the Buddha\'s Life',
     days: 7,
-    price: 1499,
     badge: 'Most Popular',
     badgeStyle: 'bg-tertiary text-on-tertiary',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuB9PdMGgBUu778m_8DALztERX1e-i0BQPVkjw9_rH7PTTwc6JFR5nni814-8ymlzrvv53i_4Jh8t0BR6rX2O6F72P5ipoLH5v-A0bHoImaAASfSwIXAaHXt9bsUhbO1g6PayM4ulpbhEId1b6vwXmHPf2MLRb5OrfrNCw4DqQuMFa3TNeRJq4H6xOHnpiJ6egGqebVL8eOlxSxtyvWY15aTRtSxScINYQwyWkF49HYLxgJYYostodjKtV90szjgqK1dak5_rzcZtBs',
@@ -59,7 +57,6 @@ const tours: Tour[] = [
     name: 'Sacred Bodh Gaya Immersion',
     tagline: 'Go Deep into the Heart of Enlightenment',
     days: 4,
-    price: 649,
     badge: 'Best Seller',
     badgeStyle: 'bg-primary text-on-primary',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAp2qF5E3XK5I4jnFrtdVw7kX_hdxLfatJvNeuVCUIcfn9O6Egdctoa6tQhBukZz5vXGsqLOJBPLs4Hx3sbzVAw1nNM6zJcpqwFr_4yiafohT5w0nuskzcBu8ZBJnxVHV_2xAYtmlpYwO6-_E6aS3gJ2uEPBMCr6KK8hikRi6_gD8gIhgR_mXte4809gL7sMfiz1VQ3X_X9NIMUccrqsF7WXO8ErrsD9FQoMddGE4exJ0Srj_LzB-yNYUzx18KlkAF-6BX-n-wzqrY',
@@ -80,7 +77,6 @@ const tours: Tour[] = [
     name: 'Varanasi & Sarnath Retreat',
     tagline: 'River of Life, Forest of the First Teaching',
     days: 3,
-    price: 449,
     badge: null,
     badgeStyle: '',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBeXeiHkqJpMKZO5vmFn-XTo057usESQX-vLI3WTJrn5UaDfIJUhwn9K27ZCGvPXZnSxO9hvx8JVK5xP0lngGw3Yfsl3nuaFA_o7jxWRfn0xp9O308m_tI5F3XmW7JvpKIJUAFLMJo6ErL-jNXpO9TgfBeBQE9iznNRrFBd1DB5o8nifLh1Ia5_08FJ0RYhxXer76iFaiaCNleGLaZJ_V4DRRlSV7MnypM6HNZAP_6UTZ--lOl1nuh9hnykXmpkXOnnLIS8HaExBXc',
@@ -100,7 +96,6 @@ const tours: Tour[] = [
     name: 'Monastic Heritage Walk',
     tagline: 'Ancient Universities & Ruins of Magadha',
     days: 5,
-    price: 899,
     badge: 'Off the Beaten Path',
     badgeStyle: 'bg-surface-container-highest text-on-surface',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCQABquklSKh4X0Xoc3P_8Xbkxs4kGypvqOZ2sAaIsUGmrwQXV-oleFvJSSmk0GqadI9zSbQUWIO2LOTR5VopU4-vK2lU0mgQOO8FViVHYPTIcFWgz7sma8PnLaNRMpKlenz-cBWA3m1CRifODmLf0cPsaYfN1PEVOe3zGsU9tzTLocJv8U-bdKNtPYR3z6gbs57PYfYzfIXTEXcT2A6xA7OvQp76JjjJW6YspkN3ePsTN0zMBwIWpdEZ1cQ5lvP7vWsIuyolFQVno',
@@ -122,7 +117,6 @@ const tours: Tour[] = [
     name: 'Grand Lotus Circuit',
     tagline: 'India & Nepal — Every Sacred Site, One Journey',
     days: 14,
-    price: 2799,
     badge: 'Premium',
     badgeStyle: 'bg-tertiary-fixed text-on-surface',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCqcEabaiMR9Nm1d8XV2ewmJuX3y3a4JOWT4MMHp1w3Kc5dYaZTNULPZ2Qp_80wObQuUlgFtp20IsS8GRqqF40NS-T6AlciB0B_PUisbs5Mphjtpm-4JVZ1eFY37JNigB4Jl9eY7tWb3eryYP8M2_U2EaU2Rmd4eRkGc5h7o8qaRYiXXymbYTp-nnxv38wphvVROdp9fH87z56UsFX51yNA-6aKmqyL-mDakMMYjjfZCZbSGWz6Y04i7a_m5FT5gtkyx7FNC8rJnag',
@@ -153,7 +147,6 @@ const tours: Tour[] = [
     name: 'Bodh Gaya Sacred Day Tour',
     tagline: 'One Day of Deep Stillness at the World\'s Navel',
     days: 1,
-    price: 49,
     badge: null,
     badgeStyle: '',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCqjLhXX7T3AFFq5kd51LoUkPkW50DEFgoyoJxMzN1rJfAUjyPtquShFMymEjH6VEzEWZLhgWzwB-8m5UzJ-rLDT0yX7ril-3qMuHa74CNI9csOoWSfXsk-n7TzojloVBTC1lBOoPJL73QyuG_ahd-C90tXheTXzfaWbhmiKP3VsDWG-2RdUNOuY9RunyzZQnj-0-E51Oa-K_7UafdgkNXXlskSgjOz1x4C-3anbQk-ZRuKJi8VWiQEWjRyVdqyxUGJZOiCenWGGmw',
@@ -171,7 +164,6 @@ const tours: Tour[] = [
     name: 'Shravasti, Sanchi & Extended Circuit',
     tagline: 'Ashoka\'s India — Jetavana to the Great Stupa',
     days: 8,
-    price: 1199,
     badge: 'Buddhist Extended',
     badgeStyle: 'bg-surface-container-highest text-on-surface',
     category: 'buddhist',
@@ -196,7 +188,6 @@ const tours: Tour[] = [
     name: 'Golden Triangle Classic',
     tagline: 'Delhi, Agra & Jaipur — India\'s Most Iconic Journey',
     days: 6,
-    price: 899,
     badge: 'Heritage Favourite',
     badgeStyle: 'bg-amber-500/80 text-white',
     category: 'golden-triangle',
@@ -219,7 +210,6 @@ const tours: Tour[] = [
     name: 'Royal Rajasthan & Ranthambore',
     tagline: 'Palaces, Tigers & Desert Dunes',
     days: 9,
-    price: 1399,
     badge: 'New',
     badgeStyle: 'bg-amber-600 text-white',
     category: 'cultural',
@@ -245,7 +235,6 @@ const tours: Tour[] = [
     name: 'Buddha to the Taj — The Perfect India Mix',
     tagline: 'Enlightenment & Empire in One Journey',
     days: 10,
-    price: 1699,
     badge: 'Mixed Circuit',
     badgeStyle: 'bg-primary text-on-primary',
     category: 'mixed',
@@ -272,7 +261,6 @@ const tours: Tour[] = [
     name: 'Kerala Backwaters & Spice Coast',
     tagline: 'God\'s Own Country — Houseboat, Tea & Ayurveda',
     days: 7,
-    price: 1099,
     badge: 'New',
     badgeStyle: 'bg-emerald-600 text-white',
     category: 'cultural',
@@ -296,7 +284,6 @@ const tours: Tour[] = [
     name: 'Himalayan Buddhist Sojourn',
     tagline: 'Monasteries in the Clouds & Kanchenjunga Views',
     days: 8,
-    price: 1299,
     badge: 'Limited Edition',
     badgeStyle: 'bg-cyan-600 text-white',
     category: 'buddhist',
@@ -321,7 +308,6 @@ const tours: Tour[] = [
     name: 'Ladakh: The Little Tibet',
     tagline: 'High Altitude Spirituality in a Stark Landscape',
     days: 7,
-    price: 1599,
     badge: 'Seasonal Escape',
     badgeStyle: 'bg-blue-600 text-white',
     category: 'buddhist',
@@ -345,7 +331,6 @@ const tours: Tour[] = [
     name: 'Nepal Spiritual Vibe',
     tagline: 'From the Chaos of Kathmandu to the Calm of Pokhara',
     days: 6,
-    price: 999,
     badge: 'Nepal Specail',
     badgeStyle: 'bg-red-600 text-white',
     category: 'mixed',
@@ -600,15 +585,8 @@ function TourCard({ tour }: { tour: Tour }) {
           ))}
         </div>
 
-        {/* Price & CTA */}
-        <div className="mt-auto pt-5 border-t border-outline-variant/20 flex items-center justify-between">
-          <div>
-            <span className="text-xs text-secondary uppercase tracking-wider block">{t('ui.from')}</span>
-            <span className="font-headline text-2xl text-primary font-bold">
-              ${tour.price.toLocaleString()}
-              <span className="text-sm font-normal text-secondary">/person</span>
-            </span>
-          </div>
+        {/* CTA */}
+        <div className="mt-auto pt-5 border-t border-outline-variant/20 flex justify-center">
           <Link
             to="/contact"
             className="lotus-gradient text-white px-6 py-3 rounded-full font-bold text-xs tracking-wide shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/40 transition-all"

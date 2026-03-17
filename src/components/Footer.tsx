@@ -38,7 +38,7 @@ export default function Footer() {
                 <Facebook size={18} className="text-primary-fixed" />
               </a>
               <a
-                href="mailto:pilgrimage@nirvanatravels.com"
+                href="mailto:bodhiholytours@gmail.com"
                 aria-label="Email"
                 className="w-10 h-10 rounded-full bg-inverse-on-surface/10 flex items-center justify-center hover:bg-primary-fixed/20 transition-colors"
               >
@@ -75,20 +75,30 @@ export default function Footer() {
             <ul className="space-y-3 text-sm">
               <li>
                 <a
-                  href="https://wa.me/919876543210"
+                  href="https://wa.me/918210937258"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-inverse-on-surface/70 hover:text-primary-fixed transition-colors"
                 >
-                  {t('footer.whatsapp')}: +91 98765 43210
+                  {t('footer.whatsapp')}: +91 82109 37258
+                </a>
+              </li>
+              <li>
+                <a href="tel:+918210937258" className="text-inverse-on-surface/70 hover:text-primary-fixed transition-colors">
+                  +91 82109 37258
+                </a>
+              </li>
+              <li>
+                <a href="tel:+918789305700" className="text-inverse-on-surface/70 hover:text-primary-fixed transition-colors">
+                  +91 87893 05700
                 </a>
               </li>
               <li>
                 <a
-                  href="mailto:pilgrimage@nirvanatravels.com"
+                  href="mailto:bodhiholytours@gmail.com"
                   className="text-inverse-on-surface/70 hover:text-primary-fixed transition-colors"
                 >
-                  pilgrimage@nirvanatravels.com
+                  bodhiholytours@gmail.com
                 </a>
               </li>
               <li className="text-inverse-on-surface/50 leading-relaxed">

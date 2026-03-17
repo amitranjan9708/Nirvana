@@ -333,7 +333,7 @@ export default function Contact() {
             <h3 className="font-headline text-2xl text-on-surface">{t('ui.reachOutDirectly')}</h3>
 
             <a
-              href="https://wa.me/919876543210"
+              href="https://wa.me/918210937258"
               target="_blank"
               rel="noopener noreferrer"
               className="group block p-6 bg-surface-container-lowest rounded-xl border border-outline-variant/10 hover:border-primary/30 transition-all"
@@ -344,14 +344,14 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="font-bold text-xs tracking-widest text-secondary mb-1 uppercase">{t('footer.whatsapp')}</p>
-                  <p className="text-on-surface font-semibold">+91 98765 43210</p>
+                  <p className="text-on-surface font-semibold">+91 82109 37258 · +91 87893 05700</p>
                   <p className="text-sm text-on-surface-variant mt-1">{tt('contact.info.whatsappHours', 'Instant support · Mon–Sat 7am–8pm IST')}</p>
                 </div>
               </div>
             </a>
 
             <a
-              href="mailto:pilgrimage@nirvanatravels.com"
+              href="mailto:bodhiholytours@gmail.com"
               className="group block p-6 bg-surface-container-lowest rounded-xl border border-outline-variant/10 hover:border-primary/30 transition-all"
             >
               <div className="flex items-start gap-4">
@@ -360,7 +360,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="font-bold text-xs tracking-widest text-secondary mb-1 uppercase">{tt('contact.info.email', 'Email')}</p>
-                  <p className="text-on-surface font-semibold">pilgrimage@nirvanatravels.com</p>
+                  <p className="text-on-surface font-semibold">bodhiholytours@gmail.com</p>
                   <p className="text-sm text-on-surface-variant mt-1">{tt('contact.info.emailHours', 'We reply within 24 hours')}</p>
                 </div>
               </div>
@@ -374,7 +374,6 @@ export default function Contact() {
                 <div>
                   <p className="font-bold text-xs tracking-widest text-secondary mb-1 uppercase">{tt('contact.info.office', 'Bodh Gaya Office')}</p>
                   <p className="text-on-surface leading-relaxed">
-                    {tt('contact.info.officeLine1', 'Nirvana Pilgrimage House')}<br />
                     {t('footer.addressLine1')}<br />
                     {t('footer.addressLine2')}
                   </p>
@@ -397,7 +396,7 @@ export default function Contact() {
               referrerPolicy="no-referrer-when-downgrade"
             />
             <a
-              href="https://maps.google.com/?q=Mahabodhi+Temple,+Bodh+Gaya,+Bihar"
+              href="https://maps.google.com/?q=Domuhan-Bodhgaya+Rd,+near+Aastha+hotel,+Gaya,+Kolhaura,+Bihar+824231"
               target="_blank"
               rel="noopener noreferrer"
               className="block text-center py-3 bg-surface-container text-sm font-bold text-primary hover:bg-surface-container-high transition-colors"
