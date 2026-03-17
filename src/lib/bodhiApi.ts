@@ -26,7 +26,7 @@ export interface PublicReview {
 }
 
 const viteEnv = (import.meta as ImportMeta & { env?: Record<string, string> }).env;
-const API_BASE = viteEnv?.VITE_API_BASE_URL ?? 'https://metll-backend-1.onrender.com';
+const API_BASE = viteEnv?.VITE_API_BASE_URL ?? 'https://api.metll.in';
 const MODULE_BASE = '/api/v1/bodhi-holy-tour';
 
 function buildUrl(path: string): string {
