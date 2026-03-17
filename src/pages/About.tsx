@@ -10,8 +10,8 @@ export default function About() {
     'about.hero.line2': 'ศรัทธายาวนานกว่าทศวรรษ',
     'about.hero.subtitle': 'Bodhi holy Tour ไม่ใช่เพียงบริษัทท่องเที่ยว แต่เป็นสะพานเชื่อมภูมิปัญญาโบราณกับผู้แสวงหาทางจิตวิญญาณยุคใหม่',
     'about.story.title': 'ก่อตั้งโดยคนท้องถิ่นที่เข้าใจพื้นที่จริง',
-    'about.story.p1': 'Bodhi holy Tour ก่อตั้งโดยเทนซิน ไกด์ท้องถิ่นที่ใช้เวลากว่า 10 ปีเดินตามเส้นทางศักดิ์สิทธิ์ของพุทธคยา สารนาถ และกุสินารา',
-    'about.story.p2': 'เมื่อได้ดูแลผู้แสวงบุญนับพันคนจากทั่วโลก เทนซินเห็นว่านักเดินทางจำนวนมากยังไม่ได้สัมผัสการเดินทางด้านในอย่างแท้จริง',
+    'about.story.p1': 'Bodhi Holy Tours ก่อตั้งโดยอัจฉยะ กุมาร ไกด์ท้องถิ่นที่ใช้เวลากว่า 10 ปีเดินตามเส้นทางศักดิ์สิทธิ์ของพุทธคยา สารนาถ และกุสินารา',
+    'about.story.p2': 'เมื่อได้ดูแลผู้แสวงบุญนับพันคนจากทั่วโลก อัจฉยะ กุมาร เห็นว่านักเดินทางจำนวนมากยังไม่ได้สัมผัสการเดินทางด้านในอย่างแท้จริง',
     'about.story.quote': 'ภารกิจของเราชัดเจน: เปลี่ยนการท่องเที่ยวให้เป็นการแสวงบุญ',
     'about.intent.title': 'เจตนาศักดิ์สิทธิ์ของเรา',
     'about.intent.subtitle': 'เราดำเนินงานบนหลักอริยมรรคมีองค์แปด เพื่อให้ทุกก้าวของการเดินทางเป็นก้าวแห่งสติ',
@@ -87,10 +87,10 @@ export default function About() {
               <h2 className="font-headline text-4xl mb-6 text-on-surface">{tt('about.story.title', 'Founded by a Local Soul')}</h2>
               <div className="space-y-6 text-secondary leading-relaxed">
                 <p>
-                  {tt('about.story.p1', ' Bodhi Holy Tours  was founded by Tenzin, a local guide who spent over ten years walking the sacred paths of Bodh Gaya, Sarnath, and Kushinagar.')}
+                  {tt('about.story.p1', 'Bodhi Holy Tours was founded by Ajay Kumar, a local guide who spent over ten years walking the sacred paths of Bodh Gaya, Sarnath, and Kushinagar.')}
                 </p>
                 <p>
-                  {tt('about.story.p2', 'Having guided thousands of pilgrims from across the globe, Tenzin realized that most international travelers were missing the true "inner" journey—the quiet conversations with monks, the hidden meditation caves, and the authentic pulse of local life.')}
+                  {tt('about.story.p2', 'Having guided thousands of pilgrims from across the globe, Ajay Kumar realized that most international travelers were missing the true "inner" journey—the quiet conversations with monks, the hidden meditation caves, and the authentic pulse of local life.')}
                 </p>
                 <div className="pl-6 border-l-2 border-primary italic font-headline text-xl text-primary">
                   {tt('about.story.quote', '"My mission was simple: to move people from being tourists to becoming pilgrims."')}
@@ -155,71 +155,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* Meet the Team */}
-      <section className="py-24 bg-surface-container-low">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <span className="text-tertiary font-bold tracking-[0.2em] text-xs mb-3 block uppercase">{t('ui.theGuides')}</span>
-            <h2 className="font-headline text-4xl mb-4">{t('ui.meetYourGuides')}</h2>
-            <p className="text-secondary max-w-xl mx-auto">
-              {isThai
-                ? 'ไกด์ทุกคนของเราเป็นคนท้องถิ่นที่เติบโตในแคว้นพิหาร เข้าใจบริบทศักดิ์สิทธิ์ของพื้นที่อย่างลึกซึ้ง'
-                : 'Every guide on our team is a lifelong resident of Bihar — born, raised, and deeply rooted in its sacred landscape.'}
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Guide 1 */}
-            <div className="bg-surface-container-lowest rounded-xl overflow-hidden sacred-glow">
-              <div className="h-72 overflow-hidden">
-                <img
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuBda8Ls54Q0QUt6U-2tMxV_zRYajy8YDf0PU0gKHDNTyneachpDlywHtxnd2kn4UcfjzljyGj72TVXgTr6Q6So5wYz1UxRm27mAmEQWJ9D_MmOwuu_QAHy9qHHaWaaRhHBNlNlGR-UR_222bv--6ZmYl1O93oIFctZGt5GKhnl5d-tC8Db4eNOe3r2YiNhCJC97vNltMUAiPzmukw3Ecdzk5fkM_ldRiTDXg87B-Rh_7yL6Tb4G_FXJRTdudNhTRLE2hRnOZcp-gCA"
-                  alt="Tenzin, founder and lead guide"
-                  className="w-full h-full object-cover"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-              <div className="p-8">
-                <h3 className="font-headline text-2xl mb-1">{isThai ? 'เทนซิน ดอร์เจ' : 'Tenzin Dorje'}</h3>
-                <p className="text-tertiary text-sm font-bold uppercase tracking-wider mb-3">{isThai ? 'ผู้ก่อตั้งและหัวหน้าไกด์' : 'Founder & Lead Guide'}</p>
-                <p className="text-secondary text-sm leading-relaxed">{isThai ? 'เกิดและเติบโตที่พุทธคยา เทนซินมีประสบการณ์นำคณะผู้แสวงบุญกว่า 15 ปีจากมากกว่า 40 ประเทศ เชี่ยวชาญการเดินสมาธิและการสื่อสารธรรมะกับพระสงฆ์ในพื้นที่' : 'Born in Bodh Gaya, Tenzin has spent 15 years guiding pilgrims from 40+ countries. Fluent in English, Hindi, and Tibetan. His specialty is silent meditation walks and conversations with resident monks.'}</p>
-              </div>
-            </div>
-            {/* Guide 2 */}
-            <div className="bg-surface-container-lowest rounded-xl overflow-hidden sacred-glow">
-              <div className="h-72 overflow-hidden">
-                <img
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuBibaWd6tXauyRlMKayJAG_EjKa9lNfUumhnIQOesdu-APdg8MG1qdU_ISvYQQtvRJactTURvSjDQwNo6wjMOTLwPkFx2Sdzqzc_hHx9vKXip0B-qTWMNjYkNrq8vX8OdVKLj7nga96rvBj78stTujLwFpj-tGYGIVqkZnLnG2EBNtAc-o-uZ4-b6HryPB2X1AJvnxjch0zSejVs6H3Tt6I--dTJHVLty-5UMJM7mp8xBbf5Jpth1AElySaU4LrgYH4ZUEXKSTYJ4c"
-                  alt="Priya Sharma, historian guide"
-                  className="w-full h-full object-cover"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-              <div className="p-8">
-                <h3 className="font-headline text-2xl mb-1">{isThai ? 'ปริยา ชาร์มา' : 'Priya Sharma'}</h3>
-                <p className="text-tertiary text-sm font-bold uppercase tracking-wider mb-3">{isThai ? 'นักประวัติศาสตร์และไกด์มรดกพุทธ' : 'Historian & Heritage Guide'}</p>
-                <p className="text-secondary text-sm leading-relaxed">{isThai ? 'อดีตนักวิจัยประวัติศาสตร์พุทธแห่งมหาวิทยาลัยนาลันทา ปริยานำเสนอความรู้เชิงลึกในทุกทัวร์ โดยเฉพาะนาลันทาและราชคฤห์' : 'A former research scholar of Buddhist history at Nalanda University, Priya brings rare academic depth to every tour. She specialises in the Nalanda and Rajgir heritage walks, and the political history of ancient Magadha.'}</p>
-              </div>
-            </div>
-            {/* Guide 3 */}
-            <div className="bg-surface-container-lowest rounded-xl overflow-hidden sacred-glow">
-              <div className="h-72 overflow-hidden">
-                <img
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuBH8k-XdKu6gCJZX_HFrHHdJ_yIi5eDhWVCdR6xUSC3ipLapBJj4mhp-tqvqybvY7rBShZaWIDno5efyIzuDflHu61C9KplqkUmeu9xst8QibGtbb_-nPsrKHwKz2-KFjQ0lZ-zKSQIBxLyZvMvgo-DwKZgsNLHUWKpSf8KQbr0Jy93bVxvcZvPUasIJGpAP1Y2eZs8L1wFVPmwbLc8SBdMjDzSj1qNZUwGmV632rWTetWmve3FJdII1DXpHfAtuRKImBCa-rv-LA"
-                  alt="Arjun Singh, meditation and Varanasi guide"
-                  className="w-full h-full object-cover"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-              <div className="p-8">
-                <h3 className="font-headline text-2xl mb-1">{isThai ? 'อรชุน ซิงห์' : 'Arjun Singh'}</h3>
-                <p className="text-tertiary text-sm font-bold uppercase tracking-wider mb-3">{isThai ? 'ไกด์สมาธิและพาราณสี' : 'Meditation & Varanasi Guide'}</p>
-                <p className="text-secondary text-sm leading-relaxed">{isThai ? 'ชาวพาราณสีโดยกำเนิดและครูวิปัสสนาที่ได้รับการฝึกฝน อรชุนนำรีทรีตที่สารนาถและพาราณสี พร้อมประสบการณ์ดูแลเรือยามเช้าบนแม่น้ำคงคากว่า 8 ปี' : 'A Varanasi native and trained Vipassana teacher, Arjun leads all Sarnath and Varanasi retreats. He has guided dawn boat rides on the Ganges for over eight years, and his teachings on impermanence beside the Manikarnika Ghat are unforgettable.'}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Testimonials */}
       <section className="py-24 bg-surface">
         <div className="max-w-7xl mx-auto px-6">
@@ -230,7 +165,7 @@ export default function About() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                quote: isThai ? 'เทนซินไม่ได้พาเราแค่ชมวัดมหาโพธิ์ แต่ทำให้เราสัมผัสพลังศรัทธาที่สั่งสมมานับพันปี นี่คือประสบการณ์ที่ไม่เหมือนที่ไหน' : "Tenzin didn't just show us the Mahabodhi Temple — he made us feel the 2,500 years of prayer that have soaked into its stones. I've travelled to 40 countries. This was unlike anything.",
+                quote: isThai ? 'อัจฉยะ กุมาร ไม่ได้พาเราแค่ชมวัดมหาโพธิ์ แต่ทำให้เราสัมผัสพลังศรัทธาที่สั่งสมมานับพันปี นี่คือประสบการณ์ที่ไม่เหมือนที่ไหน' : "Ajay Kumar didn't just show us the Mahabodhi Temple — he made us feel the 2,500 years of prayer that have soaked into its stones. I've travelled to 40 countries. This was unlike anything.",
                 name: "Sarah M.",
                 country: isThai ? "สหราชอาณาจักร" : "United Kingdom",
                 tour: isThai ? "รีทรีตพุทธคยาเชิงลึก" : "Sacred Bodh Gaya Immersion",

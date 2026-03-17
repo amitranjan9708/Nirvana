@@ -409,7 +409,7 @@ export default function Contact() {
           <div className="bg-tertiary-fixed/30 rounded-xl p-6">
             <p className="font-headline text-lg text-on-surface mb-2">{t('ui.ourPromise')}</p>
             <p className="text-sm text-secondary leading-relaxed">
-              {tt('contact.promise.body', 'Every inquiry is read by Tenzin or a senior guide personally — never an automated bot. We will understand your needs and craft a genuine response within one working day.')}
+              {tt('contact.promise.body', 'Every inquiry is read by Ajay Kumar or a senior guide personally — never an automated bot. We will understand your needs and craft a genuine response within one working day.')}
             </p>
           </div>
         </div>
